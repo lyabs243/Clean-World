@@ -1,3 +1,5 @@
+import 'package:structure/presentation/pages/home_page/fragments/home_fragment.dart';
+
 import '../../../utils/my_material.dart';
 
 
@@ -18,7 +20,9 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return PageContainerWidget(
       child: Scaffold(
-        body: body,
+        body: SafeArea(
+          child: body,
+        ),
         floatingActionButton: Visibility(
           visible: navigation == HomeNavigation.home,
           child: FloatingActionButton(
@@ -56,12 +60,7 @@ class HomePageState extends State<HomePage> {
   Widget get body {
     switch (navigation) {
       case HomeNavigation.home:
-        return const Column(
-          children: [
-            SizedBox(height: paddingMedium,),
-            Text('Home'),
-          ],
-        );
+        return const HomeFragment();
       case HomeNavigation.news:
         return const Column(
           children: [

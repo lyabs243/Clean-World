@@ -9,6 +9,7 @@ class PathIcons{
   static String question = "assets/icons/question.png";
   static String warning = "assets/icons/warning.png";
   static String info = "assets/icons/info.png";
+  static String waste = "assets/icons/waste.png";
 }
 
 class PathAnimation{

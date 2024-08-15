@@ -126,3 +126,4 @@ app.*.symbols
 firebase.json
 /testexport/
 lib/firebase_options.dart
+/devtools_options.yaml
