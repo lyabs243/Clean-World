@@ -43,3 +43,9 @@ enum NotificationType {
   }
 
 }
+
+enum HomeNavigation {
+  home,
+  news,
+  profile,
+}

@@ -23,5 +23,8 @@
   "close": "Close",
   "signInWithGoogle": "Sign in with Google",
   "continueAsGuest": "Continue as Guest",
-  "copyright": "© {year} Clean World"
+  "copyright": "© {year} Clean World",
+  "home": "Home",
+  "news": "News",
+  "profile": "Profile"
 }
