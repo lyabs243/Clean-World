@@ -1,7 +1,7 @@
 import 'package:structure/logic/cubits/app_cubit.dart';
 import 'package:structure/logic/states/app_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:structure/presentation/pages/home_page/home_page.dart';
+import 'package:structure/presentation/pages/sign_in_page/sign_in_page.dart';
 import 'package:structure/utils/my_material.dart';
 
 void main() async {
@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
                       ///An Error page
                       ///return ErrorPage(title: 'Error', description: 'An erroer r An erroer rAn erroer rAn erroer rAn erroer rAn erroer rAn erroer rAn erroer r', onTry: () {});
 
-                      return const HomePage();
+                      return const SignInPage();
                     },
                   ),
                 ),

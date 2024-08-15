@@ -1,6 +1,7 @@
 {
   "@@locale": "fr",
   "appTitle": "Clean World",
+  "appSlogan": "Un monde propre est un monde heureux.",
   "errorOccurred": "Une erreur s'est produite",
   "somethingWentWrong": "Quelque chose a mal tourné",
   "warning": "Avertissement",
@@ -19,5 +20,8 @@
   "empty": "Vide",
   "about": "À propos",
   "aboutAppText": "La structure de projet Flutter est une structure de projet que j'utilise dans mes projets. C'est une structure de projet simple et propre que j'ai développée pour moi-même.",
-  "close": "Fermer"
+  "close": "Fermer",
+  "signInWithGoogle": "Se connecter avec Google",
+  "continueAsGuest": "Continuer en tant qu'invité",
+  "copyright": "© {year} Clean World"
 }

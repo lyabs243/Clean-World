@@ -6,6 +6,7 @@ const supportedLanguages = ['en', 'fr'];
 /// PAGES
 const pageHome = '/home';
 const pageNotification = '/notification';
+const pageSignIn = '/sign_in';
 
 const fieldStatusCode = 'status_code';
 

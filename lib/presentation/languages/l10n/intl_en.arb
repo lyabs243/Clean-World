@@ -1,6 +1,7 @@
 {
   "@@locale": "en",
   "appTitle": "Clean World",
+  "appSlogan": "A clean world is a happy world.",
   "errorOccurred": "Error Occurred",
   "somethingWentWrong": "Something went wrong",
   "warning": "Warning",
@@ -19,5 +20,8 @@
   "empty":"Empty",
   "about": "About",
   "aboutAppText": "Flutter project structure is a project structure that I use in my projects. It is a simple and clean project structure that I have developed for myself.",
-  "close": "Close"
+  "close": "Close",
+  "signInWithGoogle": "Sign in with Google",
+  "continueAsGuest": "Continue as Guest",
+  "copyright": "© {year} Clean World"
 }
