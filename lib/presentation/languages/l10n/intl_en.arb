@@ -1,0 +1,23 @@
+{
+  "@@locale": "en",
+  "appTitle": "Clean World",
+  "errorOccurred": "Error Occurred",
+  "somethingWentWrong": "Something went wrong",
+  "warning": "Warning",
+  "error": "Error",
+  "success": "Success",
+  "info_": "Info",
+  "confirm": "Confirm",
+  "tryAgain": "Try Again",
+  "done": "Done",
+  "ok": "Ok",
+  "view": "View",
+  "loading": "Loading",
+  "no": "No",
+  "yes": "Yes",
+  "noResultFound": "No result found!",
+  "empty":"Empty",
+  "about": "About",
+  "aboutAppText": "Flutter project structure is a project structure that I use in my projects. It is a simple and clean project structure that I have developed for myself.",
+  "close": "Close"
+}

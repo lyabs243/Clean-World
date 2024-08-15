@@ -1,0 +1,23 @@
+{
+  "@@locale": "fr",
+  "appTitle": "Clean World",
+  "errorOccurred": "Une erreur s'est produite",
+  "somethingWentWrong": "Quelque chose a mal tourné",
+  "warning": "Avertissement",
+  "error": "Erreur",
+  "success": "Succès",
+  "info_": "Info",
+  "confirm": "Confirmer",
+  "tryAgain": "Réessayer",
+  "done": "Terminé",
+  "ok": "Ok",
+  "view": "Voir",
+  "loading": "Chargement",
+  "no": "Non",
+  "yes": "Oui",
+  "noResultFound": "Aucun résultat trouvé!",
+  "empty": "Vide",
+  "about": "À propos",
+  "aboutAppText": "La structure de projet Flutter est une structure de projet que j'utilise dans mes projets. C'est une structure de projet simple et propre que j'ai développée pour moi-même.",
+  "close": "Fermer"
+}
