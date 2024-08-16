@@ -1,4 +1,5 @@
 import 'package:structure/presentation/pages/home_page/home_page.dart';
+import 'package:structure/presentation/pages/set_place_page/set_place_page.dart';
 import 'package:structure/presentation/pages/sign_in_page/sign_in_page.dart';
 import 'package:structure/presentation/router/no_animation_route.dart';
 import 'package:structure/utils/my_material.dart';
@@ -15,6 +16,10 @@ class AppRouter {
         break;
       case pageSignIn:
         page = const SignInPage();
+      case pageSetPlace:
+        page = SetPlacePage(
+          edit: arguments?[argumentEdit]?? false,
+        );
       default:
     }
 

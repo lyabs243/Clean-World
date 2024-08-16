@@ -27,6 +27,7 @@ class HomePageState extends State<HomePage> {
           visible: navigation == HomeNavigation.home,
           child: FloatingActionButton(
             onPressed: () {
+              Navigator.of(context).pushNamed(pageSetPlace);
             },
             child: const Icon(Icons.add),
           ),

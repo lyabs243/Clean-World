@@ -30,5 +30,10 @@
   "details": "Details",
   "openInMaps": "Open in Maps",
   "addImages": "Add Images",
-  "dateFormat": "d MMMM yyyy"
+  "dateFormat": "d MMMM yyyy",
+  "publish": "Publish",
+  "update": "Update",
+  "describeSituation": "Describe the situation",
+  "addLeastOneImage": "Add at least one image",
+  "takePicture": "Take Picture"
 }

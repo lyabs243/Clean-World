@@ -7,6 +7,7 @@ const supportedLanguages = ['en', 'fr'];
 const pageHome = '/home';
 const pageNotification = '/notification';
 const pageSignIn = '/sign_in';
+const pageSetPlace = '/set_place';
 
 const fieldStatusCode = 'status_code';
 
@@ -17,6 +18,7 @@ const prefSettings = 'settings';
 const argumentId = 'id';
 const argumentIsNOAnimation = 'is_no_animation';
 const argumentMessage = 'message';
+const argumentEdit = 'edit';
 
 /// SETTINGS FIELD
 const settingIsDarkMode = 'is_dark_mode';
@@ -26,7 +28,7 @@ const settingLanguage = 'language';
 const int colorHex = 0XFF008080;
 
 const Color colorPrimary = Color(colorHex);
-const Color colorSecondary = Color(0XFF98FF98);
+const Color colorSecondary = Color(0XFF79B867);
 const Color colorThird = Color(0XFF87CEEB);
 const Color colorBlack = Color(0XFF130B07);
 const Color colorWhite = Color(0XFFFFFFFF);

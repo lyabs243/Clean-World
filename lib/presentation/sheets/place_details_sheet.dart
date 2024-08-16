@@ -99,7 +99,12 @@ class PlaceDetailsSheet extends StatelessWidget {
                                         const SizedBox(width: paddingSmall,),
                                         CircleButtonWidget(
                                           icon: Icons.edit,
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            Navigator.of(context).pushNamed(
+                                              pageSetPlace,
+                                              arguments: {argumentEdit: true},
+                                            );
+                                          },
                                         ),
                                         const SizedBox(width: paddingSmall,),
                                         CircleButtonWidget(
