@@ -156,7 +156,6 @@ class PlaceDetailsSheet extends StatelessWidget {
                                     itemBuilder: (context, index) {
                                       return PlaceImageWidget(
                                         url: 'https://picsum.photos/200/300?random=${15+index}',
-                                        onTap: () {},
                                       );
                                     },
                                   ),

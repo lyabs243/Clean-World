@@ -1,4 +1,5 @@
 import 'package:structure/presentation/pages/home_page/home_page.dart';
+import 'package:structure/presentation/pages/image_viewer_page/image_viewer_page.dart';
 import 'package:structure/presentation/pages/set_place_page/set_place_page.dart';
 import 'package:structure/presentation/pages/sign_in_page/sign_in_page.dart';
 import 'package:structure/presentation/router/no_animation_route.dart';
@@ -20,6 +21,12 @@ class AppRouter {
         page = SetPlacePage(
           edit: arguments?[argumentEdit]?? false,
         );
+        break;
+      case pageImageViewer:
+        page = ImageViewerPage(
+          imageProvider: arguments?[argumentImageProvider] as ImageProvider,
+        );
+        break;
       default:
     }
 

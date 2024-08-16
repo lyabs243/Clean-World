@@ -24,7 +24,16 @@ class PlaceImageWidget extends StatelessWidget {
           child: Padding(
             padding: margin,
             child: InkWell(
-              onTap: onTap,
+              onTap: onTap?? () {
+                if (url.isNotEmpty) {
+                  Navigator.of(context).pushNamed(
+                    pageImageViewer,
+                    arguments: {
+                      argumentImageProvider: NetworkImage(url),
+                    },
+                  );
+                }
+              },
               child: Container(
                 height: heightRatio.sh,
                 width: widthRatio.sw,

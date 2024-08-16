@@ -8,6 +8,7 @@ const pageHome = '/home';
 const pageNotification = '/notification';
 const pageSignIn = '/sign_in';
 const pageSetPlace = '/set_place';
+const pageImageViewer = '/image_viewer';
 
 const fieldStatusCode = 'status_code';
 
@@ -19,6 +20,7 @@ const argumentId = 'id';
 const argumentIsNOAnimation = 'is_no_animation';
 const argumentMessage = 'message';
 const argumentEdit = 'edit';
+const argumentImageProvider = 'image_provider';
 
 /// SETTINGS FIELD
 const settingIsDarkMode = 'is_dark_mode';
