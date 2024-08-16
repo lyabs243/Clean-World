@@ -1,6 +1,6 @@
 import 'dart:async';
-
 import 'package:google_maps_flutter/google_maps_flutter.dart' as map;
+import 'package:structure/presentation/sheets/place_details_sheet.dart';
 import 'package:structure/utils/my_material.dart';
 
 class HomeFragment extends StatefulWidget {
@@ -39,30 +39,33 @@ class HomeFragmentState extends State<HomeFragment> {
         map.Marker(
           markerId: const map.MarkerId('1'),
           position: const map.LatLng(37.42796133580664, -122.085749655962),
-          onTap: () {
-            // ignore: avoid_print
-            print('=======> Google');
-          },
+          onTap: onMarkerTap,
           icon: assetMapBitmap,
         ),
         map.Marker(
           markerId: const map.MarkerId('2'),
           position: const map.LatLng(37.42008022143011, -122.08811201155186),
-          onTap: () {
-            // ignore: avoid_print
-            print('=======> Google');
-          },
+          onTap: onMarkerTap,
           icon: assetMapBitmap,
         ),
         map.Marker(
           markerId: const map.MarkerId('3'),
           position: const map.LatLng(37.41366933134158, -122.07691714167593),
-          onTap: () {
-            // ignore: avoid_print
-            print('=======> Google');
-          },
+          onTap: onMarkerTap,
           icon: assetMapBitmap,
         ),
+      },
+    );
+  }
+
+  onMarkerTap() {
+    final ValueNotifier<bool> isExpanded = ValueNotifier(false);
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
+      builder: (BuildContext context) {
+        return PlaceDetailsSheet(isExpanded: isExpanded,);
       },
     );
   }

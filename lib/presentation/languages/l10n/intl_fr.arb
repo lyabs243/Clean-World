@@ -26,5 +26,9 @@
   "copyright": "© {year} Clean World",
   "home": "Accueil",
   "news": "Infos.",
-  "profile": "Profil"
+  "profile": "Profil",
+  "details": "Détails",
+  "openInMaps": "Ouvrir dans Maps",
+  "addImages": "Ajouter des images",
+  "dateFormat": "d MMMM yyyy"
 }
