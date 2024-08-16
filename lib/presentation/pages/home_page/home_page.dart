@@ -1,4 +1,5 @@
 import 'package:structure/presentation/pages/home_page/fragments/home_fragment.dart';
+import 'package:structure/presentation/pages/home_page/fragments/news_fragment.dart';
 
 import '../../../utils/my_material.dart';
 
@@ -63,12 +64,7 @@ class HomePageState extends State<HomePage> {
       case HomeNavigation.home:
         return const HomeFragment();
       case HomeNavigation.news:
-        return const Column(
-          children: [
-            SizedBox(height: paddingMedium,),
-            Text('News'),
-          ],
-        );
+        return const NewsFragment();
       case HomeNavigation.profile:
         return const Column(
           children: [

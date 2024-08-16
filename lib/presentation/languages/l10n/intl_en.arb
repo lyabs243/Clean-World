@@ -35,5 +35,8 @@
   "update": "Update",
   "describeSituation": "Describe the situation",
   "addLeastOneImage": "Add at least one image",
-  "takePicture": "Take Picture"
+  "takePicture": "Take Picture",
+  "published": "Published",
+  "pending": "Pending",
+  "delete": "Delete"
 }

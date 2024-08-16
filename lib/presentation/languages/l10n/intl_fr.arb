@@ -35,5 +35,8 @@
   "update": "Mettre à jour",
   "describeSituation": "Décrire la situation",
   "addLeastOneImage": "Ajouter au moins une image",
-  "takePicture": "Prendre une photo"
+  "takePicture": "Prendre une photo",
+  "published": "Publiés",
+  "pending": "En attente",
+  "delete": "Supprimer"
 }

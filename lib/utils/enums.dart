@@ -1,4 +1,6 @@
 
+import 'my_material.dart';
+
 enum CustomState {
   loading,
   done,
@@ -48,4 +50,39 @@ enum HomeNavigation {
   home,
   news,
   profile,
+}
+
+enum NewsWidgetAction {
+  update,
+  delete;
+
+  String title(BuildContext context) {
+    switch (this) {
+      case NewsWidgetAction.update:
+        return AppLocalizations.of(context)!.update;
+      case NewsWidgetAction.delete:
+        return AppLocalizations.of(context)!.delete;
+    }
+  }
+
+  static List<NewsWidgetAction> getActions() {
+    return [
+      NewsWidgetAction.update,
+      NewsWidgetAction.delete,
+    ];
+  }
+}
+
+enum NewsStatus {
+  published,
+  pending;
+
+  String title(BuildContext context) {
+    switch (this) {
+      case NewsStatus.published:
+        return AppLocalizations.of(context)!.published;
+      case NewsStatus.pending:
+        return AppLocalizations.of(context)!.pending;
+    }
+  }
 }
