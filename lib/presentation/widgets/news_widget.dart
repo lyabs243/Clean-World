@@ -18,6 +18,7 @@ class NewsWidget extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
         onTap: () {
+          Navigator.of(context).pushNamed(pageNewsDetails);
         },
         child: Row(
           children: [
@@ -54,7 +55,7 @@ class NewsWidget extends StatelessWidget {
                                 'Pour sauver la terre, il faut agir maintenant et vite' * 3,
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
-                                style: Theme.of(context).textTheme.titleMedium  ,
+                                style: Theme.of(context).textTheme.titleMedium,
                               ),
                             ),
                           ),
@@ -71,7 +72,10 @@ class NewsWidget extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              DateFormat(AppLocalizations.of(context)!.dateFormat).format(DateTime.now()),
+                              DateFormat(
+                                AppLocalizations.of(context)!.dateFormat,
+                                Localizations.localeOf(context).languageCode,
+                              ).format(DateTime.now()),
                               style: Theme.of(context).textTheme. bodyMedium?.copyWith(
                                 color: Colors.grey[600]
                               ),

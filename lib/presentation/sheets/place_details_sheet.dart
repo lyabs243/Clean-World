@@ -81,7 +81,10 @@ class PlaceDetailsSheet extends StatelessWidget {
                                                 style: Theme.of(context).textTheme.bodyMedium,
                                               ),
                                               Text(
-                                                DateFormat(AppLocalizations.of(context)!.dateFormat).format(DateTime.now()),
+                                                DateFormat(
+                                                  AppLocalizations.of(context)!.dateFormat,
+                                                  Localizations.localeOf(context).languageCode,
+                                                ).format(DateTime.now()),
                                                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                                   color: colorSecondary,
                                                 ),
