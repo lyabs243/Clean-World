@@ -74,6 +74,7 @@ class SetPlacePage extends StatelessWidget {
                           widthRatio: 0.4,
                           heightRatio: 0.25,
                           margin: EdgeInsets.zero,
+                          onClose: () {},
                         );
                       },
                     ),

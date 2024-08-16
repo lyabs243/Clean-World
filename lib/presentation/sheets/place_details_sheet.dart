@@ -1,4 +1,6 @@
 import 'package:intl/intl.dart';
+import 'package:structure/presentation/dialogs/add_images_dialog.dart';
+import 'package:structure/presentation/dialogs/box_dialog.dart';
 import 'package:structure/presentation/widgets/circle_button_widget.dart';
 import 'package:structure/presentation/widgets/place_image_widget.dart';
 import 'package:structure/utils/my_material.dart';
@@ -129,7 +131,18 @@ class PlaceDetailsSheet extends StatelessWidget {
                                       context: context,
                                       text: AppLocalizations.of(context)!.addImages,
                                       icon: Icons.photo_camera,
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        showDialog(
+                                          context: context,
+                                          barrierDismissible: true,
+                                          builder: (BuildContext contextIN) {
+                                            return const BoxDialog(
+                                              height: null,
+                                              child: AddImagesDialog(),
+                                            );
+                                          },
+                                        );
+                                      },
                                     ),
                                   ],
                                 ),
