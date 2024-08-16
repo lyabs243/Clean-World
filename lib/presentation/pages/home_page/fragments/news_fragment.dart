@@ -41,7 +41,9 @@ class NewsFragment extends StatelessWidget {
               ),
               const SizedBox(width: paddingSMedium,),
               TextButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed(pageSetNews,);
+                },
                   icon: const Icon(Icons.add),
                 label: Text(AppLocalizations.of(context)!.publish),
               ),

@@ -38,5 +38,9 @@
   "takePicture": "Take Picture",
   "published": "Published",
   "pending": "Pending",
-  "delete": "Delete"
+  "delete": "Delete",
+  "now": "Now",
+  "schedule": "Schedule",
+  "completeDateFormat": "MMM d yyyy - HH:mm",
+  "title": "Title"
 }

@@ -105,6 +105,7 @@ class NewsWidget extends StatelessWidget {
           return PopupMenuItem(
             value: action,
             onTap: () {
+              action.onTap(context);
             },
             child: Text(action.title(context)),
           );

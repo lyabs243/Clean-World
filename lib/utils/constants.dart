@@ -10,6 +10,7 @@ const pageSignIn = '/sign_in';
 const pageSetPlace = '/set_place';
 const pageImageViewer = '/image_viewer';
 const pageNewsDetails = '/news_details';
+const pageSetNews = '/set_news';
 
 const fieldStatusCode = 'status_code';
 

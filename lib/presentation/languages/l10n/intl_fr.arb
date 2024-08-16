@@ -38,5 +38,9 @@
   "takePicture": "Prendre une photo",
   "published": "Publiés",
   "pending": "En attente",
-  "delete": "Supprimer"
+  "delete": "Supprimer",
+  "now": "Maintenant",
+  "schedule": "Planifier",
+  "completeDateFormat": "MMM d yyyy - HH:mm",
+  "title": "Titre"
 }

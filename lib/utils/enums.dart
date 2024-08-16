@@ -71,6 +71,28 @@ enum NewsWidgetAction {
       NewsWidgetAction.delete,
     ];
   }
+
+  onTap(BuildContext context) {
+    switch (this) {
+      case NewsWidgetAction.update:
+        Navigator.of(context).pushNamed(
+          pageSetNews,
+          arguments: {
+            argumentEdit: true,
+          }
+        );
+        break;
+      case NewsWidgetAction.delete:
+        AppDialog.showConfirmDialog(
+            context,
+            'Want delete?',
+        ).then((val) {
+          if (val) {
+          }
+        });
+        break;
+    }
+  }
 }
 
 enum NewsStatus {
