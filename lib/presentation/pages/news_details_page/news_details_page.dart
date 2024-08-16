@@ -31,44 +31,54 @@ class NewsDetailsPage extends StatelessWidget {
                 pinned: true,
                 centerTitle: true,
                 flexibleSpace: FlexibleSpaceBar(
-                  background: ImageContainerWidget(
-                    image: const NetworkImage('https://picsum.photos/200/300?random=49'),
-                    borderRadius: BorderRadius.zero,
-                    colorFilter: const ColorFilter.mode(Colors.black12, BlendMode.darken),
-                    child: SizedBox(
-                      width: 1.sw,
-                      height: double.infinity,
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            bottom: paddingMedium,
-                            left: paddingMedium,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.calendar_today,
-                                      color: colorWhite,
-                                    ),
-                                    const SizedBox(width: paddingSMedium,),
-                                    Text(
-                                        DateFormat(
-                                          AppLocalizations.of(context)!.dateFormat,
-                                          Localizations.localeOf(context).languageCode,
-                                        ).format(DateTime.now()),
-                                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                          color: colorWhite,
-                                        )
-                                    ),
-                                  ],
-                                ),
-                              ],
+                  background: InkWell(
+                    onTap: () {
+                      Navigator.of(context).pushNamed(
+                        pageImageViewer,
+                        arguments: {
+                          argumentImageProvider: const NetworkImage('https://picsum.photos/200/300?random=49'),
+                        }
+                      );
+                    },
+                    child: ImageContainerWidget(
+                      image: const NetworkImage('https://picsum.photos/200/300?random=49'),
+                      borderRadius: BorderRadius.zero,
+                      colorFilter: const ColorFilter.mode(Colors.black12, BlendMode.darken),
+                      child: SizedBox(
+                        width: 1.sw,
+                        height: double.infinity,
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              bottom: paddingMedium,
+                              left: paddingMedium,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.calendar_today,
+                                        color: colorWhite,
+                                      ),
+                                      const SizedBox(width: paddingSMedium,),
+                                      Text(
+                                          DateFormat(
+                                            AppLocalizations.of(context)!.dateFormat,
+                                            Localizations.localeOf(context).languageCode,
+                                          ).format(DateTime.now()),
+                                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                            color: colorWhite,
+                                          )
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -79,7 +89,6 @@ class NewsDetailsPage extends StatelessWidget {
           body: SingleChildScrollView(
             child: Container(
               padding: const EdgeInsets.all(paddingSMedium),
-              height: 1.sh,
               color:  Theme.of(context).scaffoldBackgroundColor,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

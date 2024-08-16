@@ -19,7 +19,7 @@
   "noResultFound": "No result found!",
   "empty":"Empty",
   "about": "About",
-  "aboutAppText": "Flutter project structure is a project structure that I use in my projects. It is a simple and clean project structure that I have developed for myself.",
+  "aboutAppText": "Clean World is an application that raises awareness about waste management, by detecting places that need to be cleaned up for a healthy environment.\n\nFeatures:\n- Detects on the Map places that need to be cleaned up (by the users)\n- Community can add pictures to the places that need to be cleaned up\n- Admins can send or schedule notifications on tips for waste management\n\n© Clean World",
   "close": "Close",
   "signInWithGoogle": "Sign in with Google",
   "continueAsGuest": "Continue as Guest",
@@ -42,5 +42,7 @@
   "now": "Now",
   "schedule": "Schedule",
   "completeDateFormat": "MMM d yyyy - HH:mm",
-  "title": "Title"
+  "title": "Title",
+  "login": "Login",
+  "logout": "Logout"
 }

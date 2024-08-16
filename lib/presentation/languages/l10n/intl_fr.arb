@@ -19,7 +19,7 @@
   "noResultFound": "Aucun résultat trouvé!",
   "empty": "Vide",
   "about": "À propos",
-  "aboutAppText": "La structure de projet Flutter est une structure de projet que j'utilise dans mes projets. C'est une structure de projet simple et propre que j'ai développée pour moi-même.",
+  "aboutAppText": "Clean World est une application qui sensibilise à la gestion des déchets, en détectant les endroits qui doivent être nettoyés pour un environnement sain.\n\nFonctionnalités:\n- Détecte sur la carte les endroits qui doivent être nettoyés (par les utilisateurs)\n- La communauté peut ajouter des photos des endroits qui doivent être nettoyés\n- Les administrateurs peuvent envoyer ou programmer des notifications sur des conseils de gestion des déchets\n\n© Clean World",
   "close": "Fermer",
   "signInWithGoogle": "Se connecter avec Google",
   "continueAsGuest": "Continuer en tant qu'invité",
@@ -42,5 +42,7 @@
   "now": "Maintenant",
   "schedule": "Planifier",
   "completeDateFormat": "MMM d yyyy - HH:mm",
-  "title": "Titre"
+  "title": "Titre",
+  "login": "Se connecter",
+  "logout": "Se déconnecter"
 }

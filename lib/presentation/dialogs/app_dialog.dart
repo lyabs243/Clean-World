@@ -30,7 +30,6 @@ class AppDialog {
 
   static Future showAboutAppDialog(BuildContext context) {
     return AppDialog(
-      icon: Icons.info,
       title: AppLocalizations.of(context)!.about,
       description: AppLocalizations.of(context)!.aboutAppText,
       context: context,
