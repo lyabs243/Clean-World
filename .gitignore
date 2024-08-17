@@ -127,3 +127,4 @@ firebase.json
 /testexport/
 lib/firebase_options.dart
 /devtools_options.yaml
+/android/app/google-services.json
