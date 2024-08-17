@@ -4,7 +4,6 @@ import 'package:structure/utils/my_material.dart';
 
 const collectionNotification = 'clean_notifications';
 
-const fieldNotificationId = 'id';
 const fieldNotificationDocument = 'document';
 const fieldNotificationTitle = 'title';
 const fieldNotificationDescription = 'description';
@@ -15,7 +14,6 @@ const fieldNotificationCreationDate = 'creation_date';
 
 class NotificationItem {
 
-  int id;
   NotificationType type;
   NotificationMode mode;
   String title, description, image;
@@ -25,7 +23,7 @@ class NotificationItem {
   DocumentSnapshot? document;
 
   NotificationItem({required this.type, this.mode = NotificationMode.external, this.title = '', this.description = '', required this.data,
-    this.document, this.id = 0, this.image = '',});
+    this.document, this.image = '',});
 
   static NotificationItem? fromMap(Map map, {isoDate = false}) {
     NotificationItem? item;
@@ -35,7 +33,7 @@ class NotificationItem {
       item = NotificationItem(type: NotificationType.getType(map[fieldNotificationType])?? NotificationType.none,
         data: map[fieldNotificationData]?? {}, document: map[fieldNotificationDocument],
         title: map[fieldNotificationTitle]?? '', description: map[fieldNotificationDescription]?? '', image: map[fieldNotificationImage]?? '',
-        id: map[fieldNotificationId]?? 0,);
+        );
 
       if (isoDate) {
         item.creationDate = dateParsing(map[fieldNotificationCreationDate]) ?? DateTime.now();
@@ -50,7 +48,6 @@ class NotificationItem {
 
   Map<String, dynamic> toMap({isoDate = false}) {
     return {
-      fieldNotificationId: id,
       fieldNotificationTitle: title,
       fieldNotificationDescription: description,
       fieldNotificationType: type.code,
@@ -87,7 +84,7 @@ class NotificationItem {
 
   NotificationItem copy() {
     NotificationItem copy = NotificationItem(type: type, mode: mode, title: title, description: description, data: data,
-      document: document, id: id, image: image,);
+      document: document, image: image,);
     copy.creationDate = creationDate;
     return copy;
   }

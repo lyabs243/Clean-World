@@ -66,3 +66,6 @@ const textSizeXXXLarge = 52.0;
 /// NOTIFICATIONS
 const fieldNotificationMessage = 'message';
 const fieldNotificationGlobalTopic = 'global';
+
+/// FUNCTIONS
+const functionSendNotification = 'sendNotification';
