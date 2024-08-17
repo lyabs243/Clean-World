@@ -23,9 +23,11 @@ class NewsTest {
     test.test('Add News', () async {
       NewsItem itemNews = NewsItem(
         createdBy: '1',
-        title: 'Title',
-        description: 'Description',
-        date: DateTime.now(),
+        title: 'Title test',
+        photoUrl: 'https://picsum.photos/200/300?random=88',
+        description: """[{"insert": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",  "attributes": {"header": 1}},{"insert": "\\n"}]""",
+        date: DateTime.now().subtract(const Duration(days: 1)),
+        status: NewsStatus.pending,
       );
       DocumentSnapshot? doc = await repository.add(itemNews);
       itemNews.document = doc;

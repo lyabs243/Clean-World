@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:structure/utils/enums.dart';
 
 const collectionNews = "clean_news";
@@ -10,6 +14,7 @@ const fieldNewsDate = "date";
 const fieldNewsStatus = "status";
 const fieldNewsCreatedBy = "created_by";
 const fieldNewsCreatedAt = "created_at";
+const fieldNewsDescriptionPlainText = "description_plain_text";
 const fieldNewsDocument = "document";
 
 class NewsItem {
@@ -60,7 +65,22 @@ class NewsItem {
       fieldNewsStatus: status.name,
       fieldNewsCreatedBy: createdBy,
       fieldNewsCreatedAt: createdAt,
+      fieldNewsDescriptionPlainText: descriptionPlainText,
     };
+  }
+
+  String get descriptionPlainText {
+    return contentQuill.toPlainText().replaceAll('\n', ' ');
+  }
+
+  Document get contentQuill {
+    try {
+      return Document.fromJson(jsonDecode(description));
+    }
+    catch (err) {
+      debugPrint('=========Error parsing description: $err');
+      return Document()..insert(0, description);
+    }
   }
 
 }
