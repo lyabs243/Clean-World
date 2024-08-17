@@ -1,13 +1,16 @@
+import 'package:structure/data/models/notification_item.dart';
 import 'package:structure/logic/responses/app_response.dart';
-import 'package:structure/logic/states/default_state.dart';
 
-class AppState extends DefaultState<AppResponse> {
+class AppState {
 
-  AppState({super.response, super.isLoading = true,});
+  NotificationItem? notification;
+  AppResponse? response;
+  bool isLoading;
 
-  @override
+  AppState({this.response, this.isLoading = true, this.notification});
+
   AppState copy() {
-    AppState copy = AppState(response: response, isLoading: isLoading,);
+    AppState copy = AppState(response: response, isLoading: isLoading, notification: notification,);
 
     return copy;
   }

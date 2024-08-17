@@ -27,4 +27,9 @@ class SettingsCubit extends DefaultCubit<SettingsState> {
     update();
   }
 
+  setFirstUse() async {
+    state.settings.isFirstUse = false;
+    update();
+  }
+
 }

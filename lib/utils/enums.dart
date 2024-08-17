@@ -28,6 +28,7 @@ enum NotificationMode {inApp, external,}
 enum NotificationType {
 
   none(code: '1'),
+  news(code: '2'),
   ;
 
   final String code;

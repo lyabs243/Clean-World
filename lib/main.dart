@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
                 create: (context) => SettingsCubit(SettingsState(settings: settings))
             ),
             BlocProvider<AppCubit>(
-                create: (context) => AppCubit(AppState())
+                create: (context) => AppCubit(AppState(),)
             ),
           ],
           child: BlocBuilder<SettingsCubit, SettingsState>(

@@ -29,6 +29,7 @@ const argumentImageProvider = 'image_provider';
 /// SETTINGS FIELD
 const settingIsDarkMode = 'is_dark_mode';
 const settingLanguage = 'language';
+const settingIsFirstUse = 'is_first_use';
 
 /// COLORS
 const int colorHex = 0XFF008080;
@@ -63,5 +64,5 @@ const textSizeXXLarge = 45.0;
 const textSizeXXXLarge = 52.0;
 
 /// NOTIFICATIONS
-const fieldNotificationType = 'type';
 const fieldNotificationMessage = 'message';
+const fieldNotificationGlobalTopic = 'global';
