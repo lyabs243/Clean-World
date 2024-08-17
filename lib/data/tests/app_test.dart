@@ -1,5 +1,6 @@
 // import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:structure/data/tests/tests/user_test.dart';
+// import 'package:structure/data/tests/tests/place_test.dart';
 
 class AppTest {
 
@@ -12,6 +13,7 @@ class AppTest {
     // FirebaseAuth.instance.signInAnonymously();
 
     // UserTest.run();
+    // PlaceTest.run();
   }
 
 }
