@@ -108,4 +108,15 @@ enum NewsStatus {
         return AppLocalizations.of(context)!.pending;
     }
   }
+
+  static NewsStatus? fromString(String value) {
+    switch (value) {
+      case 'published':
+        return NewsStatus.published;
+      case 'pending':
+        return NewsStatus.pending;
+      default:
+        return null;
+    }
+  }
 }

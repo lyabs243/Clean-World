@@ -2,6 +2,7 @@
 // import 'package:structure/data/tests/tests/user_test.dart';
 // import 'package:structure/data/tests/tests/place_test.dart';
 // import 'package:structure/data/tests/tests/notification_test.dart';
+// import 'package:structure/data/tests/tests/news_test.dart';
 
 class AppTest {
 
@@ -16,6 +17,7 @@ class AppTest {
     // UserTest.run();
     // PlaceTest.run();
     // NotificationTest.run();
+    // NewsTest.run();
   }
 
 }
