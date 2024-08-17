@@ -3,6 +3,8 @@ import 'my_material.dart';
 const langCodeDefault = 'fr';
 const supportedLanguages = ['en', 'fr'];
 
+const prefCurrentUser = 'current_user';
+
 /// PAGES
 const pageHome = '/home';
 const pageNotification = '/notification';

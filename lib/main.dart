@@ -3,6 +3,7 @@ import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:structure/data/tests/app_test.dart';
 import 'package:structure/firebase_options.dart';
 import 'package:structure/logic/cubits/app_cubit.dart';
 import 'package:structure/logic/states/app_state.dart';
@@ -29,6 +30,7 @@ void main() async {
     }
   }
 
+  AppTest.run();
   runApp(MyApp(appRouter: AppRouter(), settings: settings,));
 }
 

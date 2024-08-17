@@ -9,3 +9,15 @@ openPage(BuildContext context, String page, Map<String, dynamic> arguments) {
 bool get emulatorOn {
   return kDebugMode && (kIsWeb || Platform.isAndroid);
 }
+
+DateTime? dateParsing(String dateString) {
+  DateTime? parsedDate;
+  try {
+    parsedDate = DateTime.parse(dateString);
+  }
+  catch (err) {
+    debugPrint('Error parsing date: $err');
+  }
+
+  return parsedDate;
+}
