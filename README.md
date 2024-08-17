@@ -40,4 +40,4 @@ The app uses authentication with Google, follow the instructions to initialize [
 - Firebase Cloud Functions
 - Google Maps API
 
-The code to schedule notifications is made with Firebase Cloud Functions and is available on this [repository](https://github.com).
+The code to schedule notifications is made with Firebase Cloud Functions and is available on this [repository](https://github.com/lyabs243/Clean-World-Functions).
