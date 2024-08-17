@@ -1,12 +1,34 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:structure/firebase_options.dart';
 import 'package:structure/logic/cubits/app_cubit.dart';
 import 'package:structure/logic/states/app_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:structure/presentation/pages/sign_in_page/sign_in_page.dart';
+import 'package:structure/utils/methods.dart';
 import 'package:structure/utils/my_material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SettingsItem settings = await SettingsRepository().getSettings();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
+
+  // only for development
+  if (emulatorOn) {
+    try {
+      FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
+      await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+      await FirebaseStorage.instance.useStorageEmulator('localhost', 9199);
+      FirebaseFunctions.instance.useFunctionsEmulator('localhost', 5001);
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
+  }
+
   runApp(MyApp(appRouter: AppRouter(), settings: settings,));
 }
 
