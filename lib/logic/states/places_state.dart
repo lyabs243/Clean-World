@@ -1,13 +1,13 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart' as map;
 import 'package:structure/data/models/place_item.dart';
 import 'package:structure/data/models/user_item.dart';
-import 'package:structure/utils/path_assets.dart';
+import 'package:structure/utils/my_material.dart';
 
 class PlacesState {
 
   bool isLoading;
-  GoogleMapController? controller;
-  LatLng currentPosition;
+  map.GoogleMapController? controller;
+  map.LatLng currentPosition;
   List<PlaceItem> places = [];
   List<UserItem> owners = [];
 
@@ -30,17 +30,17 @@ class PlacesState {
     return null;
   }
 
-  Set<Marker> getMarkers(Function(PlaceItem item) onMarkerTap) {
-    Set<Marker> markers = {};
+  Set<map.Marker> getMarkers(Function(PlaceItem item, UserItem? owner) onMarkerTap) {
+    Set<map.Marker> markers = {};
 
     for (PlaceItem item in places) {
-      markers.add(Marker(
-        markerId: MarkerId(item.document?.id ?? ''),
-        position: LatLng(item.latitude, item.longitude),
+      markers.add(map.Marker(
+        markerId: map.MarkerId(item.document?.id ?? ''),
+        position: map.LatLng(item.latitude, item.longitude),
         onTap: () {
-          onMarkerTap(item);
+          onMarkerTap(item, getUser(item.createdBy));
         },
-        icon: AssetMapBitmap(PathIcons.waste,),
+        icon: map.AssetMapBitmap(PathIcons.waste,),
       ));
     }
 

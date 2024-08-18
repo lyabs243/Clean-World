@@ -47,5 +47,11 @@
   "logout": "Se déconnecter",
   "authenticationFailed": "Échec de l'authentification",
   "authRequired": "Authentification requise",
-  "authRequiredText": "Authentifiez-vous pour utiliser cette fonctionnalité et rejoindre la communauté croissante des amoureux de l'environnement!"
+  "authRequiredText": "Authentifiez-vous pour utiliser cette fonctionnalité et rejoindre la communauté croissante des amoureux de l'environnement!",
+  "shareAppMessage": "Pour plus d'informations, téléchargez Clean World sur le lien suivant: {link}",
+  "@shareAppMessage": {
+    "placeholders": {
+      "link": {"type": "String"}
+    }
+  }
 }

@@ -47,5 +47,11 @@
   "logout": "Logout",
   "authenticationFailed": "Authentication failed",
   "authRequired": "Authentication required",
-  "authRequiredText": "Authenticate to use this feature and join the growing community of Environment Lovers!"
+  "authRequiredText": "Authenticate to use this feature and join the growing community of Environment Lovers!",
+  "shareAppMessage": "For more information, download the Clean World on the following link: {link}",
+  "@shareAppMessage": {
+    "placeholders": {
+      "link": {"type": "String"}
+    }
+  }
 }

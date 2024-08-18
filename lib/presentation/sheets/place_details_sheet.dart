@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:structure/data/models/place_item.dart';
+import 'package:structure/data/models/user_item.dart';
 import 'package:structure/logic/cubits/app_cubit.dart';
 import 'package:structure/presentation/dialogs/add_images_dialog.dart';
 import 'package:structure/presentation/dialogs/box_dialog.dart';
@@ -10,11 +12,18 @@ import 'package:structure/utils/my_material.dart';
 class PlaceDetailsSheet extends StatelessWidget {
 
   final ValueNotifier<bool> isExpanded;
+  final PlaceItem place;
+  final UserItem? user;
+  final Function()? onOpenInMap, onShare;
 
-  const PlaceDetailsSheet({super.key, required this.isExpanded});
+  const PlaceDetailsSheet({super.key, required this.isExpanded, required this.place, this.user,
+    this.onOpenInMap, this.onShare});
 
   @override
   Widget build(BuildContext context) {
+
+    UserItem? current = context.read<AppCubit>().state.user;
+
     return DraggableScrollableSheet(
       expand: false,
       builder: (BuildContext context, ScrollController scrollController) {
@@ -69,7 +78,9 @@ class PlaceDetailsSheet extends StatelessWidget {
                                             decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                               image: DecorationImage(
-                                                image: AssetImage(PathImage.avatar),
+                                                image: (user?.photoUrl.isNotEmpty?? false)?
+                                                NetworkImage(user!.photoUrl) as ImageProvider:
+                                                AssetImage(PathImage.avatar),
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
@@ -79,14 +90,14 @@ class PlaceDetailsSheet extends StatelessWidget {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                'User Name',
+                                                user?.name?? '',
                                                 style: Theme.of(context).textTheme.bodyMedium,
                                               ),
                                               Text(
                                                 DateFormat(
                                                   AppLocalizations.of(context)!.dateFormat,
                                                   Localizations.localeOf(context).languageCode,
-                                                ).format(DateTime.now()),
+                                                ).format(place.createdAt),
                                                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                                   color: colorSecondary,
                                                 ),
@@ -101,22 +112,31 @@ class PlaceDetailsSheet extends StatelessWidget {
                                       children: [
                                         CircleButtonWidget(
                                           icon: Icons.share,
-                                          onPressed: () {},
-                                        ),
-                                        const SizedBox(width: paddingSmall,),
-                                        CircleButtonWidget(
-                                          icon: Icons.edit,
                                           onPressed: () {
-                                            Navigator.of(context).pushNamed(
-                                              pageSetPlace,
-                                              arguments: {argumentEdit: true},
-                                            );
+                                            onShare?.call();
                                           },
                                         ),
-                                        const SizedBox(width: paddingSmall,),
-                                        CircleButtonWidget(
-                                          icon: Icons.delete,
-                                          onPressed: () {},
+                                        Visibility(
+                                          visible: current?.authId == place.createdBy || (current?.isAdmin?? false),
+                                          child: Row(
+                                            children: [
+                                              const SizedBox(width: paddingSmall,),
+                                              CircleButtonWidget(
+                                                icon: Icons.edit,
+                                                onPressed: () {
+                                                  Navigator.of(context).pushNamed(
+                                                    pageSetPlace,
+                                                    arguments: {argumentEdit: true},
+                                                  );
+                                                },
+                                              ),
+                                              const SizedBox(width: paddingSmall,),
+                                              CircleButtonWidget(
+                                                icon: Icons.delete,
+                                                onPressed: () {},
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ],
                                     )
@@ -129,7 +149,9 @@ class PlaceDetailsSheet extends StatelessWidget {
                                       context: context,
                                       text: AppLocalizations.of(context)!.openInMaps,
                                       icon: Icons.map,
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        onOpenInMap?.call();
+                                      },
                                     ),
                                     const SizedBox(width: paddingSMedium,),
                                     AppButtonWidget(
@@ -161,18 +183,18 @@ class PlaceDetailsSheet extends StatelessWidget {
                                   height: 0.3.sh,
                                   width: 1.sw,
                                   child: ListView.builder(
-                                    itemCount: 8,
+                                    itemCount: place.photosUrls.length,
                                     scrollDirection: Axis.horizontal,
                                     itemBuilder: (context, index) {
                                       return PlaceImageWidget(
-                                        url: 'https://picsum.photos/200/300?random=${15+index}',
+                                        url: place.photosUrls[index],
                                       );
                                     },
                                   ),
                                 ),
                                 const SizedBox(height: paddingMedium,),
                                 Text(
-                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, ultricies nunc. Nulla facilisi. Nullam nec nunc nec nunc ultricies nunc. Nulla facilisi. Nullam nec nunc nec nunc ultricies nunc.' * 8,
+                                  place.description,
                                 )
                               ],
                             ),

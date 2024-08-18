@@ -72,3 +72,5 @@ const fieldNotificationGlobalTopic = 'global';
 const functionSendNotification = 'sendNotification';
 
 const defaultMapPosition = map.LatLng(-11.6753304, 27.4197895);
+
+const downloadAppLink = '[Lien de téléchargement de l\'application]';
