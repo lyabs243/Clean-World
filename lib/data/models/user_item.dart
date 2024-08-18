@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:structure/utils/enums.dart';
 import 'package:structure/utils/methods.dart';
 
 const collectionUsers = 'clean_users';
@@ -10,17 +11,19 @@ const fieldUserName = 'name';
 const fieldUserPhotoUrl = 'photo_url';
 const fieldUserIsAdmin = 'is_admin';
 const fieldUserCreatedAt = 'created_at';
+const fieldUserAuthType = 'auth_type';
 const fieldUserDocument = 'document';
 
 class UserItem {
 
   String authId, email, name, photoUrl;
   bool isAdmin;
+  AuthType authType;
   DateTime createdAt = DateTime.now();
   DocumentSnapshot? document;
 
   UserItem({required this.authId, required this.email, this.name = '', this.photoUrl = '', this.isAdmin = false, this.document,
-    });
+    this.authType = AuthType.guest});
 
   static UserItem? fromMap(Map map, {bool isoDate = false}) {
     UserItem? user;
@@ -34,6 +37,7 @@ class UserItem {
           photoUrl: map[fieldUserPhotoUrl]?? '',
           isAdmin: map[fieldUserIsAdmin]?? false,
           document: map[fieldUserDocument],
+          authType: AuthType.fromString(map[fieldUserAuthType]?? 'guest')?? AuthType.guest,
         );
 
         if (isoDate) {
@@ -57,6 +61,7 @@ class UserItem {
       fieldUserName: name,
       fieldUserPhotoUrl: photoUrl,
       fieldUserIsAdmin: isAdmin,
+      fieldUserAuthType: authType.name,
       fieldUserCreatedAt: (isoDate)
           ? createdAt.toIso8601String()
           : createdAt,

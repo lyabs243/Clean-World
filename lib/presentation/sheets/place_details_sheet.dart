@@ -1,4 +1,6 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:structure/logic/cubits/app_cubit.dart';
 import 'package:structure/presentation/dialogs/add_images_dialog.dart';
 import 'package:structure/presentation/dialogs/box_dialog.dart';
 import 'package:structure/presentation/widgets/circle_button_widget.dart';
@@ -135,16 +137,21 @@ class PlaceDetailsSheet extends StatelessWidget {
                                       text: AppLocalizations.of(context)!.addImages,
                                       icon: Icons.photo_camera,
                                       onPressed: () {
-                                        showDialog(
-                                          context: context,
-                                          barrierDismissible: true,
-                                          builder: (BuildContext contextIN) {
-                                            return const BoxDialog(
-                                              height: null,
-                                              child: AddImagesDialog(),
-                                            );
-                                          },
-                                        );
+                                        bool isConnected = context.read<AppCubit>().state.isConnected;
+                                        if (!isConnected) {
+                                          AppDialog.showAuthRequiredDialog(context);
+                                        } else {
+                                          showDialog(
+                                            context: context,
+                                            barrierDismissible: true,
+                                            builder: (BuildContext contextIN) {
+                                              return const BoxDialog(
+                                                height: null,
+                                                child: AddImagesDialog(),
+                                              );
+                                            },
+                                          );
+                                        }
                                       },
                                     ),
                                   ],

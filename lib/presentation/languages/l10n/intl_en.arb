@@ -44,5 +44,8 @@
   "completeDateFormat": "MMM d yyyy - HH:mm",
   "title": "Title",
   "login": "Login",
-  "logout": "Logout"
+  "logout": "Logout",
+  "authenticationFailed": "Authentication failed",
+  "authRequired": "Authentication required",
+  "authRequiredText": "Authenticate to use this feature and join the growing community of Environment Lovers!"
 }

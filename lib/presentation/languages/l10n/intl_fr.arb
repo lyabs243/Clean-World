@@ -44,5 +44,8 @@
   "completeDateFormat": "MMM d yyyy - HH:mm",
   "title": "Titre",
   "login": "Se connecter",
-  "logout": "Se déconnecter"
+  "logout": "Se déconnecter",
+  "authenticationFailed": "Échec de l'authentification",
+  "authRequired": "Authentification requise",
+  "authRequiredText": "Authentifiez-vous pour utiliser cette fonctionnalité et rejoindre la communauté croissante des amoureux de l'environnement!"
 }

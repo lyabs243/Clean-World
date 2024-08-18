@@ -12,6 +12,8 @@ import 'package:structure/presentation/pages/sign_in_page/sign_in_page.dart';
 import 'package:structure/utils/methods.dart';
 import 'package:structure/utils/my_material.dart';
 
+import 'presentation/pages/home_page/home_page.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SettingsItem settings = await SettingsRepository().getSettings();
@@ -79,6 +81,10 @@ class MyApp extends StatelessWidget {
                             child: CircularProgressIndicator(),
                           ),
                         );
+                      }
+
+                      if (appState.user != null) {
+                        return const HomePage();
                       }
 
                       ///An Error page

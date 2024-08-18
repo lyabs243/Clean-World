@@ -1,7 +1,7 @@
 import 'package:structure/data/models/response_code_item.dart';
 import 'package:structure/utils/my_material.dart';
 
-enum AppCode {error, success}
+enum AppCode {error, success, loggedOut}
 
 class AppResponse extends ResponseCodeItem {
 
@@ -15,6 +15,7 @@ class AppResponse extends ResponseCodeItem {
       case AppCode.error:
         return AppLocalizations.of(context)!.error;
       case AppCode.success:
+      case AppCode.loggedOut:
         return AppLocalizations.of(context)!.success;
     }
   }
@@ -25,6 +26,7 @@ class AppResponse extends ResponseCodeItem {
       case AppCode.error:
         return DialogType.error;
       case AppCode.success:
+      case AppCode.loggedOut:
         return DialogType.success;
     }
   }

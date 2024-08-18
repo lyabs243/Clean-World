@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:structure/presentation/dialogs/auth_required_dialog.dart';
 import 'package:structure/utils/my_material.dart';
 
 class AppDialog {
@@ -87,6 +88,15 @@ class AppDialog {
 
             ),
           );
+        }
+    );
+  }
+
+  static Future showAuthRequiredDialog(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return const AuthRequiredDialog();
         }
     );
   }

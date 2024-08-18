@@ -1,3 +1,5 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:structure/logic/cubits/app_cubit.dart';
 import 'package:structure/presentation/pages/home_page/fragments/home_fragment.dart';
 import 'package:structure/presentation/pages/home_page/fragments/news_fragment.dart';
 import 'package:structure/presentation/pages/home_page/fragments/profile_fragment.dart';
@@ -29,7 +31,12 @@ class HomePageState extends State<HomePage> {
           visible: navigation == HomeNavigation.home,
           child: FloatingActionButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(pageSetPlace);
+              bool isConnected = context.read<AppCubit>().state.isConnected;
+              if (!isConnected) {
+                AppDialog.showAuthRequiredDialog(context);
+              } else {
+                Navigator.of(context).pushNamed(pageSetPlace);
+              }
             },
             child: const Icon(Icons.add),
           ),

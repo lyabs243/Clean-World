@@ -1,6 +1,13 @@
+import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:structure/data/models/notification_item.dart';
+import 'package:structure/data/models/user_item.dart';
+import 'package:structure/data/repositories/user_repository.dart';
 import 'package:structure/logic/responses/app_response.dart';
 import 'package:structure/logic/states/app_state.dart';
 
@@ -9,6 +16,8 @@ import '../../utils/my_material.dart';
 class AppCubit extends Cubit<AppState> {
 
   final SettingsRepository settingsRepository = SettingsRepository();
+  final UserRepository userRepository = UserRepository();
+  StreamSubscription? userSubscription;
 
   AppCubit(super.initialState,) {
     initData();
@@ -19,9 +28,63 @@ class AppCubit extends Cubit<AppState> {
     emit(state.copy());
 
     await _initCloudMessaging();
+    UserItem? user = await userRepository.getCurrentUser();
+    state.user = user;
 
     state.isLoading = false;
     emit(state.copy());
+
+    listenUserChange();
+  }
+
+  Future setUser({UserItem? user, bool saveUser = true,}) async {
+    state.user = user;
+
+    if (saveUser) {
+      await userRepository.setCurrentUser(user);
+    }
+
+    emit(state.copy());
+  }
+
+  logout() async {
+    state.response = AppResponse(code: AppCode.loggedOut);
+
+    if (state.user?.authType != null && state.user?.authType != AuthType.guest) {
+      if (state.user?.authType == AuthType.google  && !kIsWeb) {
+        try {
+          await GoogleSignIn().signOut();
+        } catch (e) {
+          // ignore: avoid_print
+          print(e);
+        }
+      }
+
+      await FirebaseAuth.instance.signOut();
+    }
+    setUser(user: null,);
+  }
+
+  listenUserChange() async {
+    userSubscription?.cancel();
+    if (state.user != null && state.user?.authType != AuthType.guest && state.user!.authId.isNotEmpty && state.user!.authId.isNotEmpty) {
+      userSubscription = UserRepository.queryGetUser(state.user!.authId).snapshots().listen((element) async {
+        UserItem? user = UserItem.fromMap(element.data() as Map);
+        if (user != null && state.user != null) {
+          user.document = element;
+          user.authId = element.id;
+          state.user = user;
+          userRepository.setCurrentUser(user);
+          emit(state.copy());
+        }
+      });
+    }
+  }
+
+  @override
+  Future<void> close() {
+    userSubscription?.cancel();
+    return super.close();
   }
 
   Future _initCloudMessaging() async {

@@ -120,3 +120,19 @@ enum NewsStatus {
     }
   }
 }
+
+enum AuthType {
+  google,
+  guest;
+
+  static AuthType? fromString(String value) {
+    switch (value) {
+      case 'google':
+        return AuthType.google;
+      case 'guest':
+        return AuthType.guest;
+      default:
+        return null;
+    }
+  }
+}
