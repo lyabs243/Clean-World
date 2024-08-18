@@ -1,4 +1,5 @@
 import 'my_material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart' as map;
 
 const langCodeDefault = 'fr';
 const supportedLanguages = ['en', 'fr'];
@@ -69,3 +70,5 @@ const fieldNotificationGlobalTopic = 'global';
 
 /// FUNCTIONS
 const functionSendNotification = 'sendNotification';
+
+const defaultMapPosition = map.LatLng(-11.6753304, 27.4197895);

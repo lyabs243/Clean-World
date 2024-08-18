@@ -10,6 +10,7 @@ import 'package:structure/data/models/user_item.dart';
 import 'package:structure/data/repositories/user_repository.dart';
 import 'package:structure/logic/responses/app_response.dart';
 import 'package:structure/logic/states/app_state.dart';
+import 'package:structure/utils/methods.dart';
 
 import '../../utils/my_material.dart';
 
@@ -30,6 +31,7 @@ class AppCubit extends Cubit<AppState> {
     await _initCloudMessaging();
     UserItem? user = await userRepository.getCurrentUser();
     state.user = user;
+    state.devicePosition = await getCurrentPosition();
 
     state.isLoading = false;
     emit(state.copy());

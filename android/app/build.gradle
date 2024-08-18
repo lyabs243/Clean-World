@@ -32,7 +32,7 @@ if (googleMapsApiKey == null) {
 
 android {
     namespace "dev.lyabs.clean"
-    compileSdk flutter.compileSdkVersion
+    compileSdk 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {

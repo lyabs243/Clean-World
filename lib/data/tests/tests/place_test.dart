@@ -33,6 +33,46 @@ class PlaceTest {
       DocumentSnapshot? doc = await repository.add(itemPlace);
       itemPlace.document = doc;
       item = itemPlace;
+
+      // Initialize some places
+      // PlaceItem p1 = PlaceItem(
+      //   createdBy: 'pVTipyhjibbC1DuziMA8AjgGHxRQ',
+      //   description: 'Cet endroit est place en plein centre de la ville, mais ces dechets sont partout',
+      //   latitude: 37.42008022143011,
+      //   longitude: -122.08811201155186,
+      // );
+      // p1.photosUrls = [
+      //   'https://picsum.photos/200/300?random=88',
+      //   'https://picsum.photos/200/300?random=89',
+      //   'https://picsum.photos/200/300?random=90',
+      // ];
+      //
+      // PlaceItem p2 = PlaceItem(
+      //   createdBy: '1',
+      //   description: 'Ici c\'est un endroit tres sale, il y a des dechets partout, malheureusement les gens ne respectent pas la nature',
+      //   latitude: 37.42796133580664,
+      //   longitude: -122.085749655962,
+      // );
+      // p2.photosUrls = [
+      //   'https://picsum.photos/200/300?random=91',
+      // ];
+      //
+      // PlaceItem p3 = PlaceItem(
+      //   createdBy: 'pVTipyhjibbC1DuziMA8AjgGHxRQ',
+      //   description: 'Ce quartier est une poubelle a ciel ouvert, il y a des dechets partout, le bourgoumestre doit agir vite',
+      //   latitude: 37.41366933134158,
+      //   longitude: -122.07691714167593,
+      // );
+      // p3.photosUrls = [
+      //   'https://picsum.photos/200/300?random=92',
+      //   'https://picsum.photos/200/300?random=93',
+      // ];
+      //
+      // List<PlaceItem> places = [p1, p2, p3];
+      // for (PlaceItem place in places) {
+      //   await repository.add(place);
+      // }
+
       test.expect(doc, test.isNot(null));
     });
   }
