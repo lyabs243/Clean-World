@@ -1,9 +1,12 @@
 import 'package:intl/intl.dart';
+import 'package:structure/data/models/news_item.dart';
 import 'package:structure/utils/my_material.dart';
 
 class NewsWidget extends StatelessWidget {
 
-  const NewsWidget({super.key,});
+  final NewsItem news;
+
+  const NewsWidget({super.key, required this.news});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +55,7 @@ class NewsWidget extends StatelessWidget {
                           Expanded(
                             child: SingleChildScrollView(
                               child: Text(
-                                'Pour sauver la terre, il faut agir maintenant et vite' * 3,
+                                news.title,
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                                 style: Theme.of(context).textTheme.titleMedium,

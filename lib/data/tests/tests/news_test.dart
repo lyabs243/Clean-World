@@ -32,6 +32,38 @@ class NewsTest {
       DocumentSnapshot? doc = await repository.add(itemNews);
       itemNews.document = doc;
       item = itemNews;
+
+      // init data
+      // List<NewsItem> news = [
+      //   NewsItem(
+      //     createdBy: '1',
+      //     title: 'Protegeons la nature',
+      //     photoUrl: 'https://picsum.photos/200/300?random=88',
+      //     description: """[{"insert": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",  "attributes": {"header": 1}},{"insert": "\\n"}]""",
+      //     date: DateTime.now().subtract(const Duration(days: 1)),
+      //     status: NewsStatus.pending,
+      //   ),
+      //   NewsItem(
+      //     createdBy: '1',
+      //     title: 'Les animaux en danger, agissons!',
+      //     photoUrl: 'https://picsum.photos/200/300?random=55',
+      //     description: """[{"insert": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",  "attributes": {"header": 1}},{"insert": "\\n"}]""",
+      //     date: DateTime.now().subtract(const Duration(days: 1)),
+      //     status: NewsStatus.published,
+      //   ),
+      //   NewsItem(
+      //     createdBy: '1',
+      //     title: 'Sauvons les abeilles',
+      //     photoUrl: 'https://picsum.photos/200/300?random=33',
+      //     description: """[{"insert": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",  "attributes": {"header": 1}},{"insert": "\\n"}]""",
+      //     date: DateTime.now().subtract(const Duration(days: 5)),
+      //     status: NewsStatus.published,
+      //   ),
+      // ];
+      // for (NewsItem item in news) {
+      //   await repository.add(item);
+      // }
+
       test.expect(doc, test.isNot(null));
     });
   }

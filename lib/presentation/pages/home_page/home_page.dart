@@ -72,7 +72,7 @@ class HomePageState extends State<HomePage> {
       case HomeNavigation.home:
         return const HomeFragment();
       case HomeNavigation.news:
-        return const NewsFragment();
+        return NewsFragment();
       case HomeNavigation.profile:
         return const ProfileFragment();
     }
