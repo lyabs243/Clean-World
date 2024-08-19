@@ -14,10 +14,10 @@ class PlaceDetailsSheet extends StatefulWidget {
   final ValueNotifier<bool> isExpanded;
   final PlaceItem place;
   final UserItem? user;
-  final Function()? onOpenInMap, onShare;
+  final Function()? onOpenInMap, onShare, onDelete;
 
   const PlaceDetailsSheet({super.key, required this.isExpanded, required this.place, this.user,
-    this.onOpenInMap, this.onShare});
+    this.onOpenInMap, this.onShare, this.onDelete});
 
   @override
   PlaceDetailsSheetState createState() => PlaceDetailsSheetState();
@@ -52,6 +52,7 @@ class PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
             valueListenable: widget.isExpanded,
             builder: (context, value, child) {
               return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (value)
                     AppBar(
@@ -68,6 +69,7 @@ class PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
                     child: SingleChildScrollView(
                       controller: scrollController,
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           if (!value)
                             Container(
@@ -82,6 +84,7 @@ class PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
                           Padding(
                             padding: const EdgeInsets.only(left: paddingMedium, right: paddingMedium, bottom: paddingMedium),
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
                                   children: [
@@ -155,7 +158,17 @@ class PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
                                               const SizedBox(width: paddingSmall,),
                                               CircleButtonWidget(
                                                 icon: Icons.delete,
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  AppDialog.showConfirmDialog(
+                                                    context,
+                                                    AppLocalizations.of(context)!.wantDeletePlace,
+                                                  ).then((value) {
+                                                    if (value != null && value) {
+                                                      widget.onDelete?.call();
+                                                      Navigator.of(context).pop();
+                                                    }
+                                                  });
+                                                },
                                               ),
                                             ],
                                           ),

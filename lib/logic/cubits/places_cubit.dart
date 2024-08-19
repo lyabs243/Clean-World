@@ -8,8 +8,10 @@ import 'package:structure/data/models/place_item.dart';
 import 'package:structure/data/models/user_item.dart';
 import 'package:structure/data/repositories/place_repository.dart';
 import 'package:structure/data/repositories/user_repository.dart';
+import 'package:structure/logic/responses/places_response.dart';
 import 'package:structure/logic/states/places_state.dart';
 import 'package:structure/utils/methods.dart';
+import 'package:structure/utils/my_material.dart';
 
 class PlacesCubit extends Cubit<PlacesState> {
 
@@ -99,6 +101,29 @@ class PlacesCubit extends Cubit<PlacesState> {
     }
 
     return user;
+  }
+
+  deletePlace(PlaceItem item) async {
+    showMessage(code: PlacesCode.operationInProgress);
+    await Future.delayed(const Duration(milliseconds: 200));
+
+    bool result = await repository.delete(item);
+    if (result) {
+      showMessage(code: PlacesCode.success);
+    } else {
+      showMessage(code: PlacesCode.error);
+    }
+  }
+
+  showMessage({PlacesCode? code, MessageType type = MessageType.toast}) async {
+    await Future.delayed(const Duration(milliseconds: 200));
+
+    if (code != null) {
+      state.response = PlacesResponse(code: code, messageType: type);
+    }
+
+    state.isLoading = false;
+    emit(state.copy());
   }
 
   @override

@@ -9,6 +9,7 @@ import 'package:structure/logic/cubits/app_cubit.dart';
 import 'package:structure/logic/cubits/places_cubit.dart';
 import 'package:structure/logic/states/places_state.dart';
 import 'package:structure/presentation/sheets/place_details_sheet.dart';
+import 'package:structure/presentation/widgets/response_code_widget.dart';
 import 'package:structure/utils/my_material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -39,69 +40,53 @@ class HomeFragmentState extends State<HomeFragment> {
 
     return BlocProvider<PlacesCubit>(
       create: (context) => PlacesCubit(PlacesState(currentPosition: center,)),
-      child: BlocBuilder<PlacesCubit, PlacesState>(
-        builder: (context, state) {
+      child: BlocListener<PlacesCubit, PlacesState>(
+        listener: listener,
+        child: BlocBuilder<PlacesCubit, PlacesState>(
+          builder: (context, state) {
 
-          return Stack(
-            children: [
-              map.GoogleMap(
-                initialCameraPosition: map.CameraPosition(
-                  target: state.currentPosition,
-                  zoom: 14.4746,
+            return Stack(
+              children: [
+                map.GoogleMap(
+                  initialCameraPosition: map.CameraPosition(
+                    target: state.currentPosition,
+                    zoom: 14.4746,
+                  ),
+                  onMapCreated: (map.GoogleMapController controller) {
+                    _controller.complete(controller);
+                    context.read<PlacesCubit>().setController(controller);
+                  },
+                  onCameraMove: (map.CameraPosition position) {
+                    // ignore: avoid_print
+                    // print('=======> ${position.target}');
+                  },
+                  mapToolbarEnabled: false,
+                  zoomControlsEnabled: false,
+                  markers: getMarkers(context, state),
                 ),
-                onMapCreated: (map.GoogleMapController controller) {
-                  _controller.complete(controller);
-                  context.read<PlacesCubit>().setController(controller);
-                },
-                onCameraMove: (map.CameraPosition position) {
-                  // ignore: avoid_print
-                  // print('=======> ${position.target}');
-                },
-                mapToolbarEnabled: false,
-                zoomControlsEnabled: false,
-                markers: state.getMarkers(onMarkerTap),
-              ),
-              Visibility(
-                visible: state.isLoading,
-                child: Positioned(
-                  right: 10,
-                  top: 10,
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: colorWhite.withOpacity(0.4),
-                      borderRadius: BorderRadius.circular(15),
+                Visibility(
+                  visible: state.isLoading,
+                  child: Positioned(
+                    right: 10,
+                    top: 10,
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: colorWhite.withOpacity(0.4),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: const CircularProgressIndicator(),
                     ),
-                    child: const CircularProgressIndicator(),
                   ),
                 ),
-              ),
-            ],
-          );
+              ],
+            );
 
-        },
+          },
+        ),
       ),
-    );
-  }
-
-  onMarkerTap(PlaceItem place, UserItem? owner) {
-    final ValueNotifier<bool> isExpanded = ValueNotifier(false);
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      useSafeArea: true,
-      builder: (BuildContext context) {
-        return PlaceDetailsSheet(isExpanded: isExpanded, place: place, user: owner,
-          onShare: () {
-            sharePlace(place);
-          },
-          onOpenInMap: () {
-            openPlaceInMap(context, place);
-          },
-        );
-      },
     );
   }
 
@@ -127,6 +112,52 @@ class HomeFragmentState extends State<HomeFragment> {
         content: Text(AppLocalizations.of(context)!.somethingWentWrong),
         backgroundColor: colorError,
       ));
+    }
+  }
+
+  Set<map.Marker> getMarkers(BuildContext contextPlaces, PlacesState statePlaces) {
+    Set<map.Marker> markers = {};
+
+    for (PlaceItem item in statePlaces.places) {
+      markers.add(map.Marker(
+        markerId: map.MarkerId(item.document?.id ?? ''),
+        position: map.LatLng(item.latitude, item.longitude),
+        onTap: () {
+          onMarkerTap(contextPlaces, item, statePlaces.getUser(item.createdBy));
+        },
+        icon: map.AssetMapBitmap(PathIcons.waste,),
+      ));
+    }
+
+    return markers;
+  }
+
+  onMarkerTap(BuildContext contextPlace, PlaceItem place, UserItem? owner) {
+    final ValueNotifier<bool> isExpanded = ValueNotifier(false);
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
+      builder: (BuildContext context) {
+        return PlaceDetailsSheet(isExpanded: isExpanded, place: place, user: owner,
+          onShare: () {
+            sharePlace(place);
+          },
+          onOpenInMap: () {
+            openPlaceInMap(context, place);
+          },
+          onDelete: () {
+            contextPlace.read<PlacesCubit>().deletePlace(place);
+          },
+        );
+      },
+    );
+  }
+
+  listener(BuildContext context, PlacesState state) {
+    if (state.response != null) {
+      ResponseCodeWidget(context: context, item: state.response!).show();
+      state.response = null;
     }
   }
 

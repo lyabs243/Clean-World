@@ -59,5 +59,7 @@
   "placeAdded": "Lieu ajouté avec succès",
   "placeUpdated": "Lieu mis à jour avec succès",
   "failedGetLocation": "Échec de l'obtention de la localisation, veuillez activer les services de localisation",
-  "notAroundPlace": "Vous devez être autour du lieu pour mettre à jour les photos"
+  "notAroundPlace": "Vous devez être autour du lieu pour mettre à jour les photos",
+  "wantDeletePlace": "Voulez-vous supprimer ce lieu?",
+  "operationInProgress": "Opération en cours"
 }

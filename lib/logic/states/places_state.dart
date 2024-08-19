@@ -1,7 +1,7 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart' as map;
 import 'package:structure/data/models/place_item.dart';
 import 'package:structure/data/models/user_item.dart';
-import 'package:structure/utils/my_material.dart';
+import 'package:structure/logic/responses/places_response.dart';
 
 class PlacesState {
 
@@ -10,11 +10,13 @@ class PlacesState {
   map.LatLng currentPosition;
   List<PlaceItem> places = [];
   List<UserItem> owners = [];
+  PlacesResponse? response;
 
-  PlacesState({this.isLoading = true, this.controller, required this.currentPosition,});
+  PlacesState({this.isLoading = true, this.controller, required this.currentPosition, this.response});
 
   PlacesState copy() {
-    PlacesState copy = PlacesState(isLoading: isLoading, controller: controller, currentPosition: currentPosition,);
+    PlacesState copy = PlacesState(isLoading: isLoading, controller: controller, currentPosition: currentPosition,
+        response: response);
 
     copy.places = List.from(places);
     copy.owners = List.from(owners);
@@ -28,23 +30,6 @@ class PlacesState {
       return items.first;
     }
     return null;
-  }
-
-  Set<map.Marker> getMarkers(Function(PlaceItem item, UserItem? owner) onMarkerTap) {
-    Set<map.Marker> markers = {};
-
-    for (PlaceItem item in places) {
-      markers.add(map.Marker(
-        markerId: map.MarkerId(item.document?.id ?? ''),
-        position: map.LatLng(item.latitude, item.longitude),
-        onTap: () {
-          onMarkerTap(item, getUser(item.createdBy));
-        },
-        icon: map.AssetMapBitmap(PathIcons.waste,),
-      ));
-    }
-
-    return markers;
   }
 
 }
