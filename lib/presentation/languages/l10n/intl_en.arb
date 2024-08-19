@@ -53,5 +53,11 @@
     "placeholders": {
       "link": {"type": "String"}
     }
-  }
+  },
+  "fillRequiredFields": "Please fill all required fields",
+  "failedUploadImage": "Failed to upload one or more images",
+  "placeAdded": "Place added successfully",
+  "placeUpdated": "Place updated successfully",
+  "failedGetLocation": "Failed to get location, please enable location services",
+  "notAroundPlace": "You must be around the place to update photos"
 }

@@ -26,6 +26,7 @@ const argumentIsNOAnimation = 'is_no_animation';
 const argumentMessage = 'message';
 const argumentEdit = 'edit';
 const argumentImageProvider = 'image_provider';
+const argumentPlace = 'place';
 
 /// SETTINGS FIELD
 const settingIsDarkMode = 'is_dark_mode';
@@ -74,3 +75,8 @@ const functionSendNotification = 'sendNotification';
 const defaultMapPosition = map.LatLng(-11.6753304, 27.4197895);
 
 const downloadAppLink = '[Lien de téléchargement de l\'application]';
+
+const maxDistanceUpdatePlace = 200; // meters
+
+/// firebase storage files reference
+const storageRefPlaces = 'places';

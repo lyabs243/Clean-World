@@ -21,7 +21,7 @@ class AppRouter {
         page = const SignInPage();
       case pageSetPlace:
         page = SetPlacePage(
-          edit: arguments?[argumentEdit]?? false,
+          place: arguments?[argumentPlace],
         );
         break;
       case pageImageViewer:

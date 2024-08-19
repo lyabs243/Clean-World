@@ -9,7 +9,7 @@ import 'package:structure/presentation/widgets/circle_button_widget.dart';
 import 'package:structure/presentation/widgets/place_image_widget.dart';
 import 'package:structure/utils/my_material.dart';
 
-class PlaceDetailsSheet extends StatelessWidget {
+class PlaceDetailsSheet extends StatefulWidget {
 
   final ValueNotifier<bool> isExpanded;
   final PlaceItem place;
@@ -18,6 +18,22 @@ class PlaceDetailsSheet extends StatelessWidget {
 
   const PlaceDetailsSheet({super.key, required this.isExpanded, required this.place, this.user,
     this.onOpenInMap, this.onShare});
+
+  @override
+  PlaceDetailsSheetState createState() => PlaceDetailsSheetState();
+}
+
+class PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
+
+  late PlaceItem place;
+
+  PlaceDetailsSheetState();
+
+  @override
+  void initState() {
+    super.initState();
+    place = widget.place;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +45,11 @@ class PlaceDetailsSheet extends StatelessWidget {
       builder: (BuildContext context, ScrollController scrollController) {
         return NotificationListener<DraggableScrollableNotification>(
           onNotification: (notification) {
-            isExpanded.value = notification.extent == notification.maxExtent;
+            widget.isExpanded.value = notification.extent == notification.maxExtent;
             return true;
           },
           child: ValueListenableBuilder<bool>(
-            valueListenable: isExpanded,
+            valueListenable: widget.isExpanded,
             builder: (context, value, child) {
               return Column(
                 children: [
@@ -78,8 +94,8 @@ class PlaceDetailsSheet extends StatelessWidget {
                                             decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                               image: DecorationImage(
-                                                image: (user?.photoUrl.isNotEmpty?? false)?
-                                                NetworkImage(user!.photoUrl) as ImageProvider:
+                                                image: (widget.user?.photoUrl.isNotEmpty?? false)?
+                                                NetworkImage(widget.user!.photoUrl) as ImageProvider:
                                                 AssetImage(PathImage.avatar),
                                                 fit: BoxFit.cover,
                                               ),
@@ -90,7 +106,7 @@ class PlaceDetailsSheet extends StatelessWidget {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                user?.name?? '',
+                                                widget.user?.name?? '',
                                                 style: Theme.of(context).textTheme.bodyMedium,
                                               ),
                                               Text(
@@ -113,7 +129,7 @@ class PlaceDetailsSheet extends StatelessWidget {
                                         CircleButtonWidget(
                                           icon: Icons.share,
                                           onPressed: () {
-                                            onShare?.call();
+                                            widget.onShare?.call();
                                           },
                                         ),
                                         Visibility(
@@ -126,8 +142,14 @@ class PlaceDetailsSheet extends StatelessWidget {
                                                 onPressed: () {
                                                   Navigator.of(context).pushNamed(
                                                     pageSetPlace,
-                                                    arguments: {argumentEdit: true},
-                                                  );
+                                                    arguments: {argumentPlace: place},
+                                                  ).then((value) {
+                                                    if (value != null && value is PlaceItem) {
+                                                      setState(() {
+                                                        place = value;
+                                                      });
+                                                    }
+                                                  });
                                                 },
                                               ),
                                               const SizedBox(width: paddingSmall,),
@@ -150,7 +172,7 @@ class PlaceDetailsSheet extends StatelessWidget {
                                       text: AppLocalizations.of(context)!.openInMaps,
                                       icon: Icons.map,
                                       onPressed: () {
-                                        onOpenInMap?.call();
+                                        widget.onOpenInMap?.call();
                                       },
                                     ),
                                     const SizedBox(width: paddingSMedium,),
@@ -167,12 +189,18 @@ class PlaceDetailsSheet extends StatelessWidget {
                                             context: context,
                                             barrierDismissible: true,
                                             builder: (BuildContext contextIN) {
-                                              return const BoxDialog(
+                                              return BoxDialog(
                                                 height: null,
-                                                child: AddImagesDialog(),
+                                                child: AddImagesDialog(place: place,),
                                               );
                                             },
-                                          );
+                                          ).then((value) {
+                                            if (value != null && value is PlaceItem) {
+                                              setState(() {
+                                                place = value;
+                                              });
+                                            }
+                                          });
                                         }
                                       },
                                     ),

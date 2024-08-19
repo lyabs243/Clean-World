@@ -1,9 +1,13 @@
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:structure/presentation/widgets/circle_button_widget.dart';
 import 'package:structure/utils/my_material.dart';
 
 class PlaceImageWidget extends StatelessWidget {
 
   final String url;
+  final XFile? imagePickerResult;
   final bool isAddButton;
   final Function()? onTap, onClose;
   final double widthRatio, heightRatio, closeButtonPositionRight, closeButtonPositionTop;
@@ -11,7 +15,7 @@ class PlaceImageWidget extends StatelessWidget {
 
   const PlaceImageWidget({super.key, this.url = '', this.onTap, this.widthRatio = 0.5, this.heightRatio = 0.4,
     this.margin = const EdgeInsets.all(paddingSMedium), this.isAddButton = false, this.onClose,
-    this.closeButtonPositionRight = 15, this.closeButtonPositionTop = 0});
+    this.closeButtonPositionRight = 15, this.closeButtonPositionTop = 0, this.imagePickerResult});
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +36,13 @@ class PlaceImageWidget extends StatelessWidget {
                       argumentImageProvider: NetworkImage(url),
                     },
                   );
+                } else if (imagePickerResult != null) {
+                  Navigator.of(context).pushNamed(
+                    pageImageViewer,
+                    arguments: {
+                      argumentImageProvider: FileImage(File(imagePickerResult!.path)),
+                    },
+                  );
                 }
               },
               child: Container(
@@ -40,11 +51,7 @@ class PlaceImageWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: (isAddButton)? null: colorPrimary,
                   borderRadius: BorderRadius.circular(paddingLargeMedium),
-                  image: (!isAddButton)?
-                  DecorationImage(
-                    image: NetworkImage(url),
-                    fit: BoxFit.cover,
-                  ): null,
+                  image: imageDecoration,
                   border: (isAddButton)?
                   Border.all(
                     color: colorPrimary,
@@ -82,7 +89,7 @@ class PlaceImageWidget extends StatelessWidget {
             top: closeButtonPositionTop,
             child: CircleButtonWidget(
               icon: Icons.close,
-              onPressed: () {},
+              onPressed: onClose,
             ),
           ),
         ),
@@ -91,5 +98,23 @@ class PlaceImageWidget extends StatelessWidget {
   }
 
   bool get showCloseButton => onClose != null;
+
+  DecorationImage? get imageDecoration {
+    if (imagePickerResult != null) {
+      return DecorationImage(
+        image: FileImage(File(imagePickerResult!.path)),
+        fit: BoxFit.cover,
+      );
+    }
+
+    if (!isAddButton) {
+      return DecorationImage(
+        image: NetworkImage(url),
+        fit: BoxFit.cover,
+      );
+    }
+
+    return null;
+  }
 
 }
