@@ -69,7 +69,6 @@ class PlaceDetailsSheetState extends State<PlaceDetailsSheet> {
                     child: SingleChildScrollView(
                       controller: scrollController,
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           if (!value)
                             Container(
