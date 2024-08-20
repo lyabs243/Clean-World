@@ -61,5 +61,7 @@
   "failedGetLocation": "Failed to get location, please enable location services",
   "notAroundPlace": "You must be around the place to update photos",
   "wantDeletePlace": "Do you want to delete this place?",
-  "operationInProgress": "Operation in progress"
+  "operationInProgress": "Operation in progress",
+  "newsDeleted": "News deleted successfully",
+  "wantDeleteNews": "Do you want to delete this news?"
 }

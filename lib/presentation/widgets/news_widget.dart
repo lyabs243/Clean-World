@@ -1,97 +1,121 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:structure/data/models/news_item.dart';
+import 'package:structure/logic/cubits/news_cubit.dart';
+import 'package:structure/logic/responses/news_response.dart';
+import 'package:structure/logic/states/news_state.dart';
+import 'package:structure/presentation/widgets/response_code_widget.dart';
 import 'package:structure/utils/my_material.dart';
 
 class NewsWidget extends StatelessWidget {
 
   final NewsItem news;
+  final Function()? onDeleted;
 
-  const NewsWidget({super.key, required this.news});
+  const NewsWidget({super.key, required this.news, this.onDeleted});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 1.sw,
-      height: 0.15.sh,
-      margin: const EdgeInsets.only(bottom: paddingMedium),
-      decoration: BoxDecoration(
-        color: colorSecondary.withOpacity(0.15),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(16),
-        onTap: () {
-          Navigator.of(context).pushNamed(pageNewsDetails);
-        },
-        child: Row(
-          children: [
-            Expanded(
-              flex: 30,
-              child: Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    bottomLeft: Radius.circular(16),
-                  ),
-                  color: colorPrimary,
-                  image: DecorationImage(
-                    image: NetworkImage('https://picsum.photos/200/300?random=18'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 70,
-              child: Container(
-                padding: const EdgeInsets.all(paddingSMedium),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+    return BlocProvider<NewsCubit>(
+      create: (context) => NewsCubit(NewsState(news: news)),
+      child: BlocListener<NewsCubit, NewsState>(
+        listener: listener,
+        child: Container(
+          width: 1.sw,
+          height: 0.15.sh,
+          margin: const EdgeInsets.only(bottom: paddingMedium),
+          decoration: BoxDecoration(
+            color: colorSecondary.withOpacity(0.15),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: BlocBuilder<NewsCubit, NewsState>(
+            builder: (context, state) {
+
+              return InkWell(
+                borderRadius: BorderRadius.circular(16),
+                onTap: () {
+                  Navigator.of(context).pushNamed(
+                    pageNewsDetails,
+                    arguments: {
+                      argumentNews: state.news,
+                      argumentOnDeleted: onDeleted,
+                    },
+                  );
+                },
+                child: Row(
                   children: [
                     Expanded(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: SingleChildScrollView(
-                              child: Text(
-                                news.title,
-                                maxLines: 3,
-                                overflow: TextOverflow.ellipsis,
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                            ),
+                      flex: 30,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(16),
+                            bottomLeft: Radius.circular(16),
                           ),
-                          Visibility(
-                            visible: true,
-                            child: menuButton(context, NewsWidgetAction.getActions()),
+                          color: colorPrimary,
+                          image: DecorationImage(
+                            image: state.image,
+                            fit: BoxFit.cover,
                           ),
-                        ],
+                        ),
                       ),
                     ),
-                    const SizedBox(height: paddingSmall,),
-                    Column(
-                      children: [
-                        Row(
+                    Expanded(
+                      flex: 70,
+                      child: Container(
+                        padding: const EdgeInsets.all(paddingSMedium),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              DateFormat(
-                                AppLocalizations.of(context)!.dateFormat,
-                                Localizations.localeOf(context).languageCode,
-                              ).format(DateTime.now()),
-                              style: Theme.of(context).textTheme. bodyMedium?.copyWith(
-                                color: Colors.grey[600]
+                            Expanded(
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: SingleChildScrollView(
+                                      child: Text(
+                                        state.news.title,
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(context).textTheme.titleMedium,
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: true,
+                                    child: menuButton(context, NewsWidgetAction.getActions()),
+                                  ),
+                                ],
                               ),
+                            ),
+                            const SizedBox(height: paddingSmall,),
+                            Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      DateFormat(
+                                        AppLocalizations.of(context)!.dateFormat,
+                                        Localizations.localeOf(context).languageCode,
+                                      ).format(state.news.date),
+                                      style: Theme.of(context).textTheme. bodyMedium?.copyWith(
+                                          color: Colors.grey[600]
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
-              ),
-            ),
-          ],
+              );
+
+            },
+          ),
         ),
       ),
     );
@@ -102,7 +126,7 @@ class NewsWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(24),
       ),
-      itemBuilder: (BuildContext context) {
+      itemBuilder: (BuildContext contextIn) {
 
         return options.map((NewsWidgetAction action) {
           return PopupMenuItem(
@@ -118,6 +142,16 @@ class NewsWidget extends StatelessWidget {
         Icons.more_vert,
       ),
     );
+  }
+
+  void listener(BuildContext context, NewsState state) {
+    if (state.response != null) {
+      ResponseCodeWidget(context: context, item: state.response!).show();
+
+      if (state.response!.code == NewsCode.deleted) {
+        onDeleted?.call();
+      }
+    }
   }
 
 }

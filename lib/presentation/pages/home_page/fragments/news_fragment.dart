@@ -97,6 +97,9 @@ class NewsFragment extends StatelessWidget {
                         return NewsWidget(
                           key: ValueKey(state.news[index].document?.id),
                           news: state.news[index],
+                          onDeleted: () {
+                            context.read<NewsListCubit>().deleteItem(state.news[index]);
+                          },
                         );
                       },
                     ),

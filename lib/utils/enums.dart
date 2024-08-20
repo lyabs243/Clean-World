@@ -1,4 +1,7 @@
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:structure/logic/cubits/news_cubit.dart';
+
 import 'my_material.dart';
 
 enum CustomState {
@@ -86,9 +89,10 @@ enum NewsWidgetAction {
       case NewsWidgetAction.delete:
         AppDialog.showConfirmDialog(
             context,
-            'Want delete?',
+            AppLocalizations.of(context)!.wantDeleteNews,
         ).then((val) {
           if (val) {
+            context.read<NewsCubit>().delete();
           }
         });
         break;

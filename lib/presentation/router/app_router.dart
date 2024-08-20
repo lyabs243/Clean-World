@@ -30,7 +30,9 @@ class AppRouter {
         );
         break;
       case pageNewsDetails:
-        page = const NewsDetailsPage(
+        page = NewsDetailsPage(
+          news: arguments![argumentNews],
+          onDeleted: arguments[argumentOnDeleted],
         );
         break;
       case pageSetNews:

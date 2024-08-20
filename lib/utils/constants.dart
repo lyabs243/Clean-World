@@ -27,6 +27,8 @@ const argumentMessage = 'message';
 const argumentEdit = 'edit';
 const argumentImageProvider = 'image_provider';
 const argumentPlace = 'place';
+const argumentNews = 'news';
+const argumentOnDeleted = 'on_deleted';
 
 /// SETTINGS FIELD
 const settingIsDarkMode = 'is_dark_mode';
