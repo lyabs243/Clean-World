@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:structure/data/models/news_item.dart';
 import 'package:structure/utils/methods.dart';
 import 'package:structure/utils/my_material.dart';
 
@@ -94,5 +95,30 @@ class NotificationItem {
 
   @override
   int get hashCode => document?.id.hashCode ?? 0;
+
+  String get page {
+    switch (type) {
+      case NotificationType.news:
+        return pageNewsDetails;
+      case NotificationType.none:
+        return pageHome;
+    }
+  }
+
+  Map<String, dynamic> get arguments {
+    switch (type) {
+      case NotificationType.news:
+        return {
+          argumentDocumentId: data['news_id'],
+          argumentNews: NewsItem(
+            title: title,
+            createdBy: '',
+            date: DateTime.now(),
+          ),
+        };
+      case NotificationType.none:
+        return {};
+    }
+  }
 
 }

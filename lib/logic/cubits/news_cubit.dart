@@ -10,12 +10,25 @@ class NewsCubit extends Cubit<NewsState> {
 
   final NewsRepository repository = NewsRepository();
   StreamSubscription? subscription;
+  final String? documentId;
 
-  NewsCubit(super.initialState,) {
+  NewsCubit(super.initialState, {this.documentId}) {
     initData();
   }
 
   initData() async {
+    state.isLoading = true;
+    emit(state.copy());
+
+    if (state.news.document == null && documentId != null) {
+      NewsItem? item = await repository.get(documentId!);
+      if (item != null) {
+        state.news = item;
+      }
+    }
+
+    state.isLoading = false;
+    emit(state.copy());
     listenChanges();
   }
 
@@ -23,6 +36,10 @@ class NewsCubit extends Cubit<NewsState> {
 
     if (subscription != null) {
       subscription!.cancel();
+    }
+
+    if (state.news.document == null) {
+      return;
     }
 
     subscription = repository.queryGetItem(state.news.document!.id).snapshots().listen((element) async {

@@ -29,6 +29,7 @@ const argumentImageProvider = 'image_provider';
 const argumentPlace = 'place';
 const argumentNews = 'news';
 const argumentOnDeleted = 'on_deleted';
+const argumentDocumentId = 'document_id';
 
 /// SETTINGS FIELD
 const settingIsDarkMode = 'is_dark_mode';

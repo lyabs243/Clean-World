@@ -12,14 +12,15 @@ import 'package:structure/utils/my_material.dart';
 class NewsDetailsPage extends StatelessWidget {
 
   final NewsItem news;
+  final String? documentId;
   final Function()? onDeleted;
 
-  const NewsDetailsPage({super.key, required this.news, this.onDeleted});
+  const NewsDetailsPage({super.key, required this.news, this.onDeleted, this.documentId});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NewsCubit(NewsState(news: news)),
+      create: (context) => NewsCubit(NewsState(news: news), documentId: documentId),
       child: BlocListener<NewsCubit, NewsState>(
         listener: listener,
         child: Scaffold(
@@ -56,7 +57,14 @@ class NewsDetailsPage extends StatelessWidget {
                                   }
                               );
                             },
-                            child: ImageContainerWidget(
+                            child: (state.isLoading)?
+                              Container(
+                                color: colorSecondary,
+                                child: const Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              ):
+                              ImageContainerWidget(
                               image: state.image,
                               borderRadius: BorderRadius.zero,
                               colorFilter: const ColorFilter.mode(Colors.black12, BlendMode.darken),
@@ -80,6 +88,8 @@ class NewsDetailsPage extends StatelessWidget {
                                               ),
                                               const SizedBox(width: paddingSMedium,),
                                               Text(
+                                                  (state.isLoading)?
+                                                  '${AppLocalizations.of(context)!.loading}...':
                                                   DateFormat(
                                                     AppLocalizations.of(context)!.dateFormat,
                                                     Localizations.localeOf(context).languageCode,
@@ -102,30 +112,41 @@ class NewsDetailsPage extends StatelessWidget {
                       ),
                     ];
                   },
-                  body: SingleChildScrollView(
-                    child: Container(
-                      padding: const EdgeInsets.all(paddingSMedium),
-                      color:  Theme.of(context).scaffoldBackgroundColor,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: paddingMedium,),
-                          Text(
-                            state.news.title,
-                            style: Theme.of(context).textTheme.headlineSmall,
+                  body: Builder(
+                    builder:  (_) {
+
+                      if (state.isLoading) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+
+                      return SingleChildScrollView(
+                        child: Container(
+                          padding: const EdgeInsets.all(paddingSMedium),
+                          color:  Theme.of(context).scaffoldBackgroundColor,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(height: paddingMedium,),
+                              Text(
+                                state.news.title,
+                                style: Theme.of(context).textTheme.headlineSmall,
+                              ),
+                              const SizedBox(height: paddingMedium,),
+                              QuillEditor.basic(
+                                controller: QuillController(
+                                  document: state.news.contentQuill,
+                                  selection: const TextSelection.collapsed(offset: 0),
+                                  readOnly: true,
+                                ),
+                              ),
+                              const SizedBox(height: paddingMedium,),
+                            ],
                           ),
-                          const SizedBox(height: paddingMedium,),
-                          QuillEditor.basic(
-                            controller: QuillController(
-                              document: state.news.contentQuill,
-                              selection: const TextSelection.collapsed(offset: 0),
-                              readOnly: true,
-                            ),
-                          ),
-                          const SizedBox(height: paddingMedium,),
-                        ],
-                      ),
-                    ),
+                        ),
+                      );
+                    },
                   ),
                 );
 

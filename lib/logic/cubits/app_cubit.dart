@@ -132,7 +132,7 @@ class AppCubit extends Cubit<AppState> {
   Future _openNotification(RemoteMessage message, {mode = NotificationMode.external}) async {
     Map<String, dynamic> data = message.data;
 
-    NotificationType? notificationType = NotificationType.getType(data[fieldNotificationType]);
+    NotificationType? notificationType = NotificationType.getType(data[fieldNotificationType]?? '');
     debugPrint('=======Notification: $data == ${message.notification?.title?? ''} == $notificationType');
 
     if (notificationType != null) {

@@ -3,6 +3,7 @@ import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:structure/data/tests/app_test.dart';
 import 'package:structure/firebase_options.dart';
 import 'package:structure/logic/cubits/app_cubit.dart';
@@ -63,35 +64,37 @@ class MyApp extends StatelessWidget {
           child: BlocBuilder<SettingsCubit, SettingsState>(
             builder: (context, state) {
 
-              return MaterialApp(
-                localizationsDelegates: AppLocalizations.localizationsDelegates,
-                onGenerateTitle: (BuildContext context) => AppLocalizations.of(context)!.appTitle,
-                locale: Locale(state.settings.langCode),
-                supportedLocales: supportedLanguages.toList().map((lang) => Locale(lang)),
-                debugShowCheckedModeBanner: false,
-                theme: (state.settings.isDarkMode)? darkTheme: lightTheme,
-                onGenerateRoute: appRouter.onGenerateRoute,
-                home: PageContainerWidget(
-                  child: BlocBuilder<AppCubit, AppState>(
-                    builder: (appContext, appState) {
+              return OverlaySupport.global(
+                child: MaterialApp(
+                  localizationsDelegates: AppLocalizations.localizationsDelegates,
+                  onGenerateTitle: (BuildContext context) => AppLocalizations.of(context)!.appTitle,
+                  locale: Locale(state.settings.langCode),
+                  supportedLocales: supportedLanguages.toList().map((lang) => Locale(lang)),
+                  debugShowCheckedModeBanner: false,
+                  theme: (state.settings.isDarkMode)? darkTheme: lightTheme,
+                  onGenerateRoute: appRouter.onGenerateRoute,
+                  home: PageContainerWidget(
+                    child: BlocBuilder<AppCubit, AppState>(
+                      builder: (appContext, appState) {
 
-                      if (appState.isLoading) {
-                        return const Scaffold(
-                          body: Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        );
-                      }
+                        if (appState.isLoading) {
+                          return const Scaffold(
+                            body: Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                        }
 
-                      if (appState.user != null) {
-                        return const HomePage();
-                      }
+                        if (appState.user != null) {
+                          return const HomePage();
+                        }
 
-                      ///An Error page
-                      ///return ErrorPage(title: 'Error', description: 'An erroer r An erroer rAn erroer rAn erroer rAn erroer rAn erroer rAn erroer rAn erroer r', onTry: () {});
+                        ///An Error page
+                        ///return ErrorPage(title: 'Error', description: 'An erroer r An erroer rAn erroer rAn erroer rAn erroer rAn erroer rAn erroer rAn erroer r', onTry: () {});
 
-                      return const SignInPage();
-                    },
+                        return const SignInPage();
+                      },
+                    ),
                   ),
                 ),
               );

@@ -33,6 +33,7 @@ class AppRouter {
         page = NewsDetailsPage(
           news: arguments![argumentNews],
           onDeleted: arguments[argumentOnDeleted],
+          documentId: arguments[argumentDocumentId],
         );
         break;
       case pageSetNews:

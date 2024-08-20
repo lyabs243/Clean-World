@@ -4,7 +4,12 @@ import 'package:geolocator/geolocator.dart';
 import 'package:structure/utils/my_material.dart';
 
 openPage(BuildContext context, String page, Map<String, dynamic> arguments) {
-
+  if (page == pageHome) {
+    Navigator.of(context).pushNamedAndRemoveUntil(pageHome, (route) => false, arguments: arguments);
+  }
+  else {
+    Navigator.of(context).pushNamed(page, arguments: arguments);
+  }
 }
 
 bool get emulatorOn {
