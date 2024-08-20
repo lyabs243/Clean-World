@@ -35,9 +35,10 @@ The app uses authentication with Google, follow the instructions to initialize [
 
 To prevent queries from failing, you need to create the following indexes in Firestore:
 
-| Collection | Fields indexed                        |
-|------------|---------------------------------------|
-| clean_news | 	status Ascending __name__ Descending |
+| Collection | Fields indexed                                      |
+|------------|-----------------------------------------------------|
+| clean_news | 	status Ascending __name__ Descending               |
+| clean_news | 	status Ascending date Ascending __name__ Ascending |
 
 ## Technologies
 - Flutter (Dart)
