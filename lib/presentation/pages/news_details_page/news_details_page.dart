@@ -2,6 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:intl/intl.dart';
 import 'package:structure/data/models/news_item.dart';
+import 'package:structure/data/models/user_item.dart';
+import 'package:structure/logic/cubits/app_cubit.dart';
 import 'package:structure/logic/cubits/news_cubit.dart';
 import 'package:structure/logic/responses/news_response.dart';
 import 'package:structure/logic/states/news_state.dart';
@@ -19,6 +21,9 @@ class NewsDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    UserItem? currentUser = context.read<AppCubit>().state.user;
+
     return BlocProvider(
       create: (context) => NewsCubit(NewsState(news: news), documentId: documentId),
       child: BlocListener<NewsCubit, NewsState>(
@@ -41,7 +46,10 @@ class NewsDetailsPage extends StatelessWidget {
                           },
                         ),
                         actions: [
-                          menuButton(context, state, NewsWidgetAction.getActions()),
+                          Visibility(
+                            visible: currentUser?.isAdmin ?? false,
+                            child: menuButton(context, state, NewsWidgetAction.getActions()),
+                          ),
                         ],
                         expandedHeight: 0.35.sh,
                         floating: false,
