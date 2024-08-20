@@ -37,7 +37,7 @@ class AppRouter {
         break;
       case pageSetNews:
         page = SetNewsPage(
-          edit: arguments?[argumentEdit]?? false,
+          news: arguments?[argumentNews],
         );
         break;
       default:

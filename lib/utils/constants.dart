@@ -82,5 +82,6 @@ const maxDistanceUpdatePlace = 200; // meters
 
 /// firebase storage files reference
 const storageRefPlaces = 'places';
+const storageRefNews = 'news';
 
 const itemsPerPage = 10;

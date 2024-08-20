@@ -29,18 +29,18 @@ class PlaceImageWidget extends StatelessWidget {
             padding: margin,
             child: InkWell(
               onTap: onTap?? () {
-                if (url.isNotEmpty) {
-                  Navigator.of(context).pushNamed(
-                    pageImageViewer,
-                    arguments: {
-                      argumentImageProvider: NetworkImage(url),
-                    },
-                  );
-                } else if (imagePickerResult != null) {
+                if (imagePickerResult != null) {
                   Navigator.of(context).pushNamed(
                     pageImageViewer,
                     arguments: {
                       argumentImageProvider: FileImage(File(imagePickerResult!.path)),
+                    },
+                  );
+                } else if (url.isNotEmpty) {
+                  Navigator.of(context).pushNamed(
+                    pageImageViewer,
+                    arguments: {
+                      argumentImageProvider: NetworkImage(url),
                     },
                   );
                 }

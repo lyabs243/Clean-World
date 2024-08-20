@@ -63,5 +63,7 @@
   "wantDeletePlace": "Voulez-vous supprimer ce lieu?",
   "operationInProgress": "Opération en cours",
   "newsDeleted": "Actualités supprimées avec succès",
-  "wantDeleteNews": "Voulez-vous supprimer ces actualités?"
+  "wantDeleteNews": "Voulez-vous supprimer ces actualités?",
+  "newsAdded": "Actualité ajoutée avec succès",
+  "newsUpdated": "Actualité mise à jour avec succès"
 }

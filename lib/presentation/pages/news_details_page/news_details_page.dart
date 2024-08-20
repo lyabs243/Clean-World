@@ -40,7 +40,7 @@ class NewsDetailsPage extends StatelessWidget {
                           },
                         ),
                         actions: [
-                          menuButton(context, NewsWidgetAction.getActions()),
+                          menuButton(context, state, NewsWidgetAction.getActions()),
                         ],
                         expandedHeight: 0.35.sh,
                         floating: false,
@@ -137,7 +137,7 @@ class NewsDetailsPage extends StatelessWidget {
     );
   }
 
-  Widget menuButton(BuildContext context, List<NewsWidgetAction> options) {
+  Widget menuButton(BuildContext context, NewsState state, List<NewsWidgetAction> options) {
     return PopupMenuButton<NewsWidgetAction>(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(24),
@@ -148,7 +148,7 @@ class NewsDetailsPage extends StatelessWidget {
           return PopupMenuItem(
             value: action,
             onTap: () {
-              action.onTap(context);
+              action.onTap(context, state.news);
             },
             child: Text(action.title(context)),
           );

@@ -1,5 +1,6 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:structure/data/models/news_item.dart';
 import 'package:structure/logic/cubits/news_cubit.dart';
 
 import 'my_material.dart';
@@ -76,13 +77,14 @@ enum NewsWidgetAction {
     ];
   }
 
-  onTap(BuildContext context) {
+  onTap(BuildContext context, NewsItem news) {
     switch (this) {
       case NewsWidgetAction.update:
         Navigator.of(context).pushNamed(
           pageSetNews,
           arguments: {
             argumentEdit: true,
+            argumentNews: news,
           }
         );
         break;

@@ -58,6 +58,9 @@ class NewsListCubit extends Cubit<NewsListState> {
   }
 
   addItem(NewsItem item) async {
+    if (item.status != state.status) {
+      return;
+    }
     state.news.insert(0, item);
     emit(state.copy());
   }
