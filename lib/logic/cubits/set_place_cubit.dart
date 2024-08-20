@@ -82,6 +82,21 @@ class SetPlaceCubit extends Cubit<SetPlaceState> {
     state.isLoading = true;
     emit(state.copy());
 
+    if (addPhotos) {
+      Position? position = await getCurrentPosition();
+      if (position == null) {
+        showMessage(code: SetPlaceCode.failedGetLocation);
+        return;
+      }
+
+      double distance = Geolocator.distanceBetween(state.place!.latitude, state.place!.longitude, position.latitude, position.longitude);
+      debugPrint('==========> distance: $distance');
+      if (distance > maxDistanceUpdatePlace) {
+        showMessage(code: SetPlaceCode.notAroundPlace);
+        return;
+      }
+    }
+
     //upload images
     List<String> urlImages = [];
     for (XFile file in state.imagePickerResults) {
@@ -167,19 +182,6 @@ class SetPlaceCubit extends Cubit<SetPlaceState> {
   }
 
   _addPhotos(List<String> urlImages) async {
-    Position? position = await getCurrentPosition();
-    if (position == null) {
-      showMessage(code: SetPlaceCode.failedGetLocation);
-      return;
-    }
-
-    double distance = Geolocator.distanceBetween(state.place!.latitude, state.place!.longitude, position.latitude, position.longitude);
-    debugPrint('==========> distance: $distance');
-    if (distance > maxDistanceUpdatePlace) {
-      showMessage(code: SetPlaceCode.notAroundPlace);
-      return;
-    }
-
     state.place!.photosUrls = [...state.place!.photosUrls, ...urlImages];
     bool result = await repository.updatePhotosUrls(state.place!, state.place!.photosUrls);
 
