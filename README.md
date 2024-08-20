@@ -31,6 +31,14 @@ Once you did, ensure that there is a `firebase_options.dart` file created in lib
 
 The app uses authentication with Google, follow the instructions to initialize [Firebase Authentication](https://firebase.google.com/docs/auth/flutter/federated-auth).
 
+#### Firestore Indexes
+
+To prevent queries from failing, you need to create the following indexes in Firestore:
+
+| Collection | Fields indexed                        |
+|------------|---------------------------------------|
+| clean_news | 	status Ascending __name__ Descending |
+
 ## Technologies
 - Flutter (Dart)
 - Firebase Firestore
