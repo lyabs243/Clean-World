@@ -40,6 +40,10 @@ To prevent queries from failing, you need to create the following indexes in Fir
 | clean_news | 	status Ascending __name__ Descending               |
 | clean_news | 	status Ascending date Ascending __name__ Ascending |
 
+### Cloud Messaging
+
+The notifications are sent when an admin publish articles or when a scheduled article has been automatically published from the backend, you need to [set up Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/flutter/client).
+
 ## Technologies
 - Flutter (Dart)
 - Firebase Firestore
