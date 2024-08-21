@@ -74,10 +74,10 @@ Packages to be configured for iOS:
 
 ### Pages
 
-| ![1. Authentication](screenshots/pages/1.%20Authentication.png) | ![2. Home Page](screenshots/pages/2. Home Page.png)                   | ![3. Require Authentication](screenshots/pages/3. Require Authentication.png) |
-|-----------------------------------------------------------------|-----------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| ![4. Set Place](screenshots/pages/4. Set Place.png)             | ![Screenshot 4](screenshots/pages/5. Sheet Place.png)                 | ![6. Sheet Place Full](screenshots/pages/6. Sheet Place Full.png)             |
-| ![7. Image View](screenshots/pages/7. Image View.png)           | ![8. Route view](screenshots/pages/8. Route view.png)                 | ![9. Add Photos](screenshots/pages/9. Add Photos.png)                         |
-| ![10. News](screenshots/pages/10. News.png)                     | ![11. Admin News](screenshots/pages/11. Admin News.png)               | ![12. Pending News](screenshots/pages/12. Pending News.png)                   |
-| ![13. Set News](screenshots/pages/13. Set News.png)             | ![14. News Notification](screenshots/pages/14. News Notification.png) | ![15. News Details](screenshots/pages/15. News Details.png)                   |
-| ![16. Profile](screenshots/pages/16. Profile.png)               |                                                                       |                                                                               |
+| ![1. Authentication](screenshots/pages/1.%20Authentication.png)   | ![2. Home Page](screenshots/pages/2.%20Home%20Page.png)                   | ![3. Require Authentication](screenshots/pages/3.%20Require%20Authentication.png) |
+|-------------------------------------------------------------------|---------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| ![4. Set Place](screenshots/pages/4.%20Set%20Place.png)           | ![Screenshot 4](screenshots/pages/5.%20Sheet%20Place.png)                 | ![6. Sheet Place Full](screenshots/pages/6.%20Sheet%20Place%20Full.png)           |
+| ![7. Image View](screenshots/pages/7.%20Image%20View.png)         | ![8. Route view](screenshots/pages/8.%20Route%20view.png)                 | ![9. Add Photos](screenshots/pages/9.%20Add%20Photos.png)                         |
+| ![10. News](screenshots/pages/10.%20News.png)                     | ![11. Admin News](screenshots/pages/11.%20Admin%20News.png)               | ![12. Pending News](screenshots/pages/12.%20Pending%20News.png)                   |
+| ![13. Set News](screenshots/pages/13.%20Set%20News.png)           | ![14. News Notification](screenshots/pages/14.%20News%20Notification.png) | ![15. News Details](screenshots/pages/15.%20News%20Details.png)                   |
+| ![16. Profile](screenshots/pages/16.%20Profile.png)               |                                                                           |                                                                                   |
