@@ -65,3 +65,19 @@ Packages to be configured for iOS:
 - [google_sign_in](https://pub.dev/packages/google_sign_in)
 - [geolocator](https://pub.dev/packages/geolocator)
 - [image_picker](https://pub.dev/packages/image_picker)
+
+## Screenshots
+
+### Global Preview
+
+![Preview](screenshots/preview.jpg)
+
+### Pages
+
+| ![1. Authentication](screenshots/pages/1.%20Authentication.png) | ![2. Home Page](screenshots/pages/2. Home Page.png)                   | ![3. Require Authentication](screenshots/pages/3. Require Authentication.png) |
+|-----------------------------------------------------------------|-----------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| ![4. Set Place](screenshots/pages/4. Set Place.png)             | ![Screenshot 4](screenshots/pages/5. Sheet Place.png)                 | ![6. Sheet Place Full](screenshots/pages/6. Sheet Place Full.png)             |
+| ![7. Image View](screenshots/pages/7. Image View.png)           | ![8. Route view](screenshots/pages/8. Route view.png)                 | ![9. Add Photos](screenshots/pages/9. Add Photos.png)                         |
+| ![10. News](screenshots/pages/10. News.png)                     | ![11. Admin News](screenshots/pages/11. Admin News.png)               | ![12. Pending News](screenshots/pages/12. Pending News.png)                   |
+| ![13. Set News](screenshots/pages/13. Set News.png)             | ![14. News Notification](screenshots/pages/14. News Notification.png) | ![15. News Details](screenshots/pages/15. News Details.png)                   |
+| ![16. Profile](screenshots/pages/16. Profile.png)               |                                                                       |                                                                               |
