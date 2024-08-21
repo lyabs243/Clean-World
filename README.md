@@ -54,3 +54,14 @@ The notifications are sent when an admin publish articles or when a scheduled ar
 - Google Maps API
 
 The code to schedule notifications is made with Firebase Cloud Functions and is available on this [repository](https://github.com/lyabs243/Clean-World-Functions).
+
+## TODO
+
+All the setup and configuration has been done on Android, the iOS setup is still pending.
+
+Packages to be configured for iOS:
+- [google_maps_flutter](https://pub.dev/packages/google_maps_flutter)
+- [firebase_core](https://pub.dev/packages/firebase_core)
+- [google_sign_in](https://pub.dev/packages/google_sign_in)
+- [geolocator](https://pub.dev/packages/geolocator)
+- [image_picker](https://pub.dev/packages/image_picker)
